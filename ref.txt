@@ -1,0 +1,24 @@
+ssh-keygen -t rsa -b 4096 -C "arunkumar.subramaniyan@ecobillz.com"
+
+
+sudo chown -R <your-username>:<your-username> .
+ to get permission
+ 
+ 
+ 
+ SELECT pvst.*, pr.*, srs.*
+FROM (
+    SELECT hash_x, hash_y
+    FROM pos_vs_srs_merge_transformed
+    GROUP BY hash_x, hash_y
+    LIMIT 100 OFFSET 100
+) AS pvst
+LEFT JOIN pos_report_transformed pr ON pvst.hash_x = pr.hash
+LEFT JOIN srs_transformed  srs ON pvst.hash_y = srs.hash;
+
+
+SELECT pvst.*, pr.*, srs.*
+FROM pos_vs_srs_merge_transformed pvst
+LEFT JOIN pos_report_transformed pr ON pvst.hash_x = pr.hash_x
+LEFT JOIN srs_transformed srs ON pvst.hash_y = srs.hash_y;
+

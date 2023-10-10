@@ -1,0 +1,14 @@
+
+services:
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: arunsubramanian002@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: Arun0002@
+    ports:
+      - "6060:80"
+    networks:
+      - pgadmin_network
+networks:
+  pgadmin_network:
+    driver: bridge

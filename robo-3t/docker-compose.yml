@@ -1,0 +1,14 @@
+version: '3'
+services:
+  robo3t:
+    image: ubuntu:latest 
+    container_name: robo3t-container
+    volumes:
+      - ./robo3t:/robo3t 
+    environment:
+      - DISPLAY=:0 
+    networks:
+      - robo3t-net  
+    command: /bin/bash -c "apt-get update && apt-get install -y robo3t"
+networks:
+  robo3t-net:
