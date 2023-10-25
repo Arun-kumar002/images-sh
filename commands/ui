@@ -1,3 +1,23 @@
-To Detach screen ctrl+ alt+a relase all and click d
+To Detach screen ctrl+ alt+a release all and click d
 screen -R Zer0
+screen ls
+sudo mount /common-fs 
+sudo reboot
+cd common-fs/app/git-recon-ui/
+df-h to check space
+du -sh * disk usage
+du -sh /var/* disk usage
+du -sh /usr/* disk usage
+
+lsblk list block devices
+
+grow partician cmd
+growpart /dev/(nvmeon1 id ) 1 
+
+partican grown fs not grown
+
+resize2fs /dev/nvmeon1p1
+rm *.gz
+
+
 
