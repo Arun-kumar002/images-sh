@@ -1,0 +1,65 @@
+{
+  
+    "label" : "discrepancy",
+    "columnLabels" : [ 
+        {
+            "label" : "Discrepancy",
+            "align" : "left",
+            "format" : "string"
+        }, 
+        {
+            "label" : "Count",
+            "align" : "right",
+            "total" : true,
+            "format" : "0"
+        }, 
+        {
+            "label" : "POS Total",
+            "align" : "right",
+            "total" : true,
+            "format" : "0.00"
+        }
+    ],
+    "filterMap":{
+        "date":"processDate"
+    },
+    "query" : {
+        "select" : "SELECT COUNT(*) AS 'Count',SUM(source.\"netReceivable\") AS \"POS Total\",SUM(source.\"loadAmount\") AS \"Customer Centria Total\",`Duplicate` AS \"Discrepancy\"",
+        "where" : "",
+        "from":"SELECT COUNT(*) FROM ( SELECT hash_one FROM sb7_pos_vs_customer_centria_transformed WHERE \"hash_one\" IS NOT NULL  GROUP BY hash_one HAVING COUNT(*) > 1) AS subquery",
+        "group" : ""
+    },
+    "defaultResponse" : [ 
+        {
+            "Count" : 0,
+            "POS Total" : 0,
+            "Customer Centria Total" : 0,
+            "Discrepancy" : "No Discrepancy Found"
+        }
+    ],
+    "columnRows" : [ 
+        
+    ],
+    "reportId" :ObjectId("651a95cb8c8503f630624b6b"),
+    "reconId" : ObjectId("651e8ef97ad3f04fda8394f5")
+}
+
+
+{
+   
+    "label" : "Duplicate get",
+    "defaultResponse" : [ 
+       
+    ],
+    "query" : {
+        "select" : "SELECT * ",
+        "where" : "WHERE hash_one IN (SELECT d.\"hash_one\" FROM sb7_pos_vs_customer_centria_transformed as \"d\"
+        GROUP BY hash_one
+        HAVING COUNT(*) > 1
+      )",
+        "group" : "",
+        "from" : ""
+    },
+    "reportId" :ObjectId("651a95cb8c8503f630624b6b"),
+    "reconId" : ObjectId("651e8ef97ad3f04fda8394f5")
+}

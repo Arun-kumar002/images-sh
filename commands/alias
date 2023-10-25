@@ -1,0 +1,8 @@
+   vi ~/.bash_aliases
+   
+  enter alias key value pairs
+  
+  ex: jump=ssh arunkumar@jump.ecobillz.in
+  
+  save
+

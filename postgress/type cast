@@ -1,0 +1,9 @@
+SELECT *
+FROM public.pos_vs_srs_merge_transformed
+limit 10;
+
+ALTER TABLE "pos_vs_srs_merge_transformed"
+ALTER COLUMN  "reconciled" SET DATA TYPE VARCHAR(4000)
+
+ALTER TABLE pos_vs_srs_merge_transformed
+ALTER COLUMN reconciled TYPE double precision USING ("variance"::double precision);
