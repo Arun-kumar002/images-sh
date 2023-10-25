@@ -1,0 +1,14 @@
+To Delete The entire Line  esc + d+d
+To delete the words from right side of selection esc+caps D
+To quiting file without saving q!
+To quiting file with saving wq!
+To  saving the file without quit w!
+To save work in new file save as operation esc+ w filename
+To find out the difference of 2 files= diff sample.txt sample1.txt 
+To search a pattern like vs code ctrl+f  here .change the insert mode to cmd mode and /type a word here . it will match the pattern in forward direction. ? type a word here it will match the pattern in backward direction (use n or N letter search forward)
+To display line number esc + :set nu 
+To word wrap esc + :set wm or set wm=2 
+To Copy esc v+ drag using curser and +y 
+To Cut esc v+ drag using curser and +d
+To Paste use p to paste after the cuser or P to paste before the curser. (if there is any prob between switching modes :set paste)
+
