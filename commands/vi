@@ -11,4 +11,6 @@ To word wrap esc + :set wm or set wm=2
 To Copy esc v+ drag using curser and +y 
 To Cut esc v+ drag using curser and +d
 To Paste use p to paste after the cuser or P to paste before the curser. (if there is any prob between switching modes :set paste)
+To undo the changes (like vs code ctrl+z)  esc + u
+To redo the changes (like vs code ctrl+y) esc + ctrl+r 
 
