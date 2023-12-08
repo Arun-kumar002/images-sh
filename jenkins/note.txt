@@ -1,0 +1,16 @@
+java application
+application specific
+used for continuous integration and continuous delivery
+
+running jenkins standalone (jetty/winstone) vs running jenkins on tomcat
+https://youtu.be/FX322RVNGj4?si=DQ8OmYIuddrD6VX2
+ci tools:
+    Bamboo
+    Buildbot
+    Apache Gump
+    Travis CI
+    jenkins
+
+Architecture:
+ dev ---> source code repo --> CI server -->build server(maven jar) -->test script server (selinium)--->production server
+

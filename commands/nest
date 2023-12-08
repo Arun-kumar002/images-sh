@@ -1,0 +1,10 @@
+npm install -g @nestjs/cli
+
+
+nest generate module YourModuleName
+
+nest generate controller YourModuleName
+
+nest generate service YourModuleName
+
+nest generate resource license-manager/forms
