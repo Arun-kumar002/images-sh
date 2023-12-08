@@ -1,0 +1,224 @@
+/* 1 */
+{
+    "_id" : ObjectId("654a2bf15ab7c3a8713944fd"),
+    "order" : 1,
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "key" : "__EMPTY_0",
+    "value" : "voucher1",
+    "dataType" : "string",
+    "format" : "string",
+    "filter" : true,
+    "label" : "Voucher1",
+    "visible" : true
+}
+
+/* 2 */
+{
+    "_id" : ObjectId("654a2bf15ab7c3a87139450a"),
+    "order" : 2,
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "key" : "__EMPTY_2",
+    "value" : "blockId",
+    "dataType" : "string",
+    "format" : "string",
+    "filter" : true,
+    "label" : "Block Id",
+    "visible" : true,
+    "mandatory" : true
+}
+
+/* 3 */
+{
+    "_id" : ObjectId("654a2bf25ab7c3a871394520"),
+    "order" : 4,
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "key" : "__EMPTY_3",
+    "value" : "accountName",
+    "dataType" : "string",
+    "format" : "string",
+    "filter" : true,
+    "label" : "Account Name",
+    "visible" : true
+}
+
+/* 4 */
+{
+    "_id" : ObjectId("654a2bf25ab7c3a87139452b"),
+    "order" : 5,
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "key" : "__EMPTY_7",
+    "value" : "amount",
+    "dataType" : "float",
+    "format" : "0.0000",
+    "filter" : true,
+    "label" : "Amount",
+    "visible" : true
+}
+
+/* 5 */
+{
+    "_id" : ObjectId("654a2bf25ab7c3a871394537"),
+    "order" : 6,
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "key" : "__EMPTY_4",
+    "value" : "status",
+    "dataType" : "string",
+    "format" : "string",
+    "filter" : true,
+    "label" : "status",
+    "visible" : true
+}
+
+/* 6 */
+{
+    "_id" : ObjectId("654a2bf25ab7c3a871394549"),
+    "order" : 7,
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "key" : "__EMPTY_5",
+    "value" : "fol",
+    "dataType" : "float",
+    "format" : "0.00",
+    "filter" : true,
+    "label" : "Fol",
+    "visible" : true
+}
+
+/* 7 */
+{
+    "_id" : ObjectId("654a2bf25ab7c3a871394557"),
+    "order" : 7,
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "key" : "__EMPTY_12",
+    "value" : "time",
+    "dataType" : "string",
+    "format" : "string",
+    "filter" : true,
+    "label" : "Time",
+    "visible" : true
+}
+
+/* 8 */
+{
+    "_id" : ObjectId("654c6e2a5ab7c3a87166eae4"),
+    "order" : 7,
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "key" : "c2",
+    "value" : "arrivalDate",
+    "dataType" : "date",
+    "format" : "dd-mm-yyy",
+    "filter" : true,
+    "label" : "Arrival Date",
+    "visible" : true
+}
+
+/* 9 */
+{
+    "_id" : ObjectId("654c6e2a5ab7c3a87166eaef"),
+    "order" : 7,
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "key" : "c3",
+    "value" : "departureDate",
+    "dataType" : "date",
+    "format" : "dd-mm-yyy",
+    "filter" : true,
+    "label" : "Departure Date",
+    "visible" : true
+}
+
+/* 10 */
+{
+    "_id" : ObjectId("654c6ebf5ab7c3a871670a24"),
+    "order" : 7,
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "key" : "c1",
+    "value" : "confirmationno",
+    "dataType" : "string",
+    "format" : "string",
+    "filter" : true,
+    "label" : "Confirmation Number",
+    "visible" : true
+}
+
+/* 11 */
+{
+    "_id" : ObjectId("654a2bf95ab7c3a8713945c7"),
+    "order" : 8,
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "key" : "__EMPTY_11",
+    "value" : "shft",
+    "dataType" : "float",
+    "format" : "0",
+    "filter" : true,
+    "label" : "shft",
+    "visible" : true
+}
+
+/* 12 */
+{
+    "_id" : ObjectId("654a2bf95ab7c3a8713945d4"),
+    "order" : 8,
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "key" : "__EMPTY_10",
+    "value" : "chsr",
+    "dataType" : "string",
+    "format" : "string",
+    "filter" : true,
+    "label" : "chsr",
+    "visible" : true
+}
+
+/* 13 */
+{
+    "_id" : ObjectId("654a2bfa5ab7c3a8713945df"),
+    "order" : 9,
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "key" : "__EMPTY_9",
+    "value" : "type",
+    "dataType" : "string",
+    "format" : "string",
+    "filter" : true,
+    "label" : "type",
+    "visible" : true
+}
+
+/* 14 */
+{
+    "_id" : ObjectId("654b15495ab7c3a8714be992"),
+    "order" : 10,
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "key" : "__EMPTY_1",
+    "value" : "voucher2",
+    "dataType" : "string",
+    "format" : "string",
+    "filter" : true,
+    "label" : "Voucher2",
+    "visible" : true
+}
+
+/* 15 */
+{
+    "_id" : ObjectId("654b18135ab7c3a8714c8ac5"),
+    "order" : 10,
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "key" : "__EMPTY_5216",
+    "value" : "voucher3",
+    "dataType" : "string",
+    "format" : "string",
+    "filter" : true,
+    "label" : "Voucher3",
+    "visible" : true
+}
+
+/* 16 */
+{
+    "_id" : ObjectId("654cab595ab7c3a8716c709a"),
+    "order" : 15,
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "key" : "__EMPTY_8",
+    "value" : "source",
+    "dataType" : "string",
+    "format" : "string",
+    "filter" : true,
+    "label" : "Source",
+    "visible" : true
+}

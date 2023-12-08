@@ -1,0 +1,366 @@
+import AWS from 'aws-sdk'
+import XLSX from 'xlsx'
+import i18 from "i18next"
+import { v4 as uuid } from 'uuid';
+import * as ReportLayer from "../../../dataLayer/report.dl";
+import * as CommonLayer from "../../../dataLayer/common.dl";
+import * as Errors from "../../../common/common.errors"
+import { messages } from '../../const/message';
+import { config } from '../../../config/config.env';
+import { escapeChars } from '../../utility/helper';
+import { socketLog, LogTags } from '../../logger/logger';
+import logger from '../../../helpers/logger';
+import { messageProcessing } from '../../../common/common.errorhandler';
+import { addIndexToDuplicates } from '../../../helpers/methods';
+const s3 = new AWS.S3({ accessKeyId: config.AWS_ACCESS_KEY, secretAccessKey: config.AWS_SECRET });
+export const sqs = new AWS.SQS({ accessKeyId: config.AWS_ACCESS_KEY, secretAccessKey: config.AWS_SECRET });
+export const sns = new AWS.SNS({ accessKeyId: config.AWS_ACCESS_KEY, secretAccessKey: config.AWS_SECRET });
+const tag = 'XLS-TO-JSON-HANDLER'
+
+let fileType: { [key: string]: any } = {
+    "application/vnd.ms-excel": "xls",
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": "xlsx",
+    "text/csv": "csv",
+    "application/vnd.ms-excel.sheet.binary.macroEnabled.12": "xlsb",
+    "application/vnd.ms-excel.sheet.macroEnabled.12": "xlsm",
+    "application/vnd.oasis.opendocument.spreadsheet": "ods",
+};
+
+export async function convertXLS2JSON(input: any) {
+    let requestId: string | undefined = undefined;
+    try {
+
+        console.log("Started to convert XLS => JSON", input);
+        const fileName = input.fileName as string;
+        const longQueue = input?.longQueue;
+        const fileSize = input?.fileSize
+        const meta = input?.metadata;
+        const reportId = meta && meta.reportid ? meta.reportid : undefined;
+        requestId = meta && meta.requestid ? meta.requestid : input.requestid
+        const userId = meta && meta.userid ? meta.userid : undefined;
+        const userEmail = meta && meta.useremail ? meta.useremail : undefined;
+        let skipRow = meta && meta.skiprow ? Number(meta.skiprow) : undefined;
+        let endRow = meta && meta.endrow ? Number(meta.endrow) : 0;
+        const reportDate = meta && meta.reportdate ? meta.reportdate : undefined;
+        const sourceTrigger = meta && meta.sourcetrigger || false;
+        let sheetName = meta && meta.sheetname ? meta.sheetname : undefined;
+
+        const contentType = meta && meta.contenttype ? meta.contenttype : undefined
+
+
+        if (contentType && !Object.keys(fileType).includes(contentType) && !Object.values(fileType).includes(contentType)) {
+            throw new Errors.ValidationError("XL_PARSE_EXTENSION_MISMATCH")
+        }
+
+        const report = await ReportLayer.findById(reportId);
+
+
+        if (report === null) {
+            throw new Errors.ValidationError("REPORT_NOT_FOUND", "Report")
+        }
+
+        if (report?.sheetName) {
+            sheetName = report?.sheetName;
+        }
+
+        if (!skipRow || (skipRow == 0 && report?.startRow > 0)) {
+            skipRow = report?.startRow;
+        }
+
+        if (!endRow || (endRow == 0 && report?.endRow > 0)) {
+            endRow = report?.endRow;
+        }
+
+        let startColumn = report?.startColumn;
+
+        if (fileName == undefined) {
+            throw new Errors.ValidationError("PARSE_FILE_NOT_FOUND")
+        }
+
+        const params: { Bucket: string, Key: string } = {
+            Bucket: config.fileUploadBucket,
+            Key: fileName
+        };
+
+
+
+        // await sendMessage(reportId, messages.xlstojsonStart, tag, requestId, messages.info, userId, userEmail, fileSize)
+        await socketLog({ requestId, reportId, status: messages.info, fileSize: undefined, userId, userEmail, notification: { tag: LogTags.UPLOAD_REPORT_END, progress: 100, status: messages.info }, start: false, end: false, tag: LogTags.UPLOAD_REPORT_END, userInput: { skipRow, endRow, reportDate, startColumn, sheetName, contentType } });
+
+        await socketLog({ requestId, reportId, status: messages.info, fileSize: fileSize, userId, userEmail, notification: { tag: LogTags.PARSE_START, progress: 0, status: messages.info }, start: false, end: false, tag: LogTags.PARSE_START });
+
+
+        const data = await new Promise((resolve, reject) => {
+            try {
+                xlToJson(params.Bucket, params.Key, reportId, resolve, skipRow, reject, reportDate, endRow, requestId, sheetName, startColumn)
+            } catch (error) {
+                console.log(error, '[xlstoJson]:43');
+                reject(error)
+            }
+        })
+
+        if (report.extension.toUpperCase() === "MASTER_UPLOAD") {
+            const subReports = report.subReports
+
+            if (!Array.isArray(subReports)) {
+                logger.info('Sub Reports Not Found');
+            }
+
+            for (let sReport of subReports) {
+                const queueParams = {
+                    MessageBody: JSON.stringify({ reportId: sReport.reportId, masterRequestId: requestId, requestId: uuid(), longQueue, data }),
+                    QueueUrl: config.longCleansingQueueUrl
+                };
+
+                console.log('queueParams', queueParams);
+
+                await sqs.sendMessage(queueParams).promise();
+            }
+        } else {
+            const queueParams = {
+                MessageBody: JSON.stringify({ reportId, requestId, longQueue, data }),
+                QueueUrl: config.longCleansingQueueUrl,
+            };
+
+            console.log('queueParams', queueParams);
+
+            await sqs.sendMessage(queueParams).promise();
+
+        }
+
+    } catch (error) {
+        logger.error("ERROR: [convertXLS2JSON]" + error.message);
+
+        let message = error?.message;
+
+        const process = messageProcessing({ message, mode: "xlparse" })
+        const tag = error?.tag
+
+        let isExist = undefined;
+        if (tag) {
+            isExist = i18.t(message, { tag })
+        } else {
+            isExist = i18.t(message)
+        }
+
+        if (isExist != message) {
+            message = isExist
+        }
+
+        await socketLog({ requestId, reportId: undefined, status: messages.info, fileSize: undefined, userId: undefined, userEmail: undefined, notification: { tag: LogTags.STATS, message: message, status: messages.error, stack: error, error: true }, start: false, end: false, tag: LogTags.STATS });
+        throw error
+    }
+}
+
+
+async function xlToJson(bucket: string, key: string, reportId: string, resolve: any, skipRow: number, rejectReq: any, reportDate: string | undefined, endRow: number, requestId: string | undefined, sheetName: string | undefined, startColumn: number | undefined) {
+
+    try {
+
+        console.time('upload process');
+
+        let stream = await s3.getObject({
+            Bucket: bucket,
+            Key: key,
+        }).createReadStream();
+
+
+
+        const buffer = await new Promise((resol, reject) => {
+            try {
+                const chunks: any = [];
+                stream.on('data', (chunk) => {
+                    chunks.push(chunk);
+                });
+                stream.on('end', () => {
+                    const buffer = Buffer.concat(chunks);
+                    resol(buffer);
+                });
+                stream.on(messages.error, reject);
+            } catch (error) {
+                console.log(error, 'err');
+            }
+        });
+
+
+
+        try {
+            await bufferToJson({ buffer, requestId, reportId, endRow, resolve, skipRow, reportDate, filter: false, sheetName, startColumn });
+        } catch (error) {
+            rejectReq()
+            throw error
+        }
+
+
+    } catch (error) {
+        logger.error('Error: [xlstojson]', error)
+        rejectReq(error)
+        throw error
+    }
+
+}
+
+
+export const bufferToJson = async ({ buffer, requestId, reportId, endRow, resolve, skipRow, reportDate, filter = false, sheetName, startColumn }: { [key: string]: any }) => {
+    try {
+
+        console.log('Buffer =======>');
+        console.log('created buffers ======>')
+        const workbook = XLSX.read(buffer, { type: 'buffer', raw: true, dense: true, cellDates: true });
+        console.log('created buffers to json ======>')
+
+        await socketLog({ requestId, reportId, status: messages.info, fileSize: undefined, userId: undefined, userEmail: undefined, notification: { tag: LogTags.PARSE_END, progress: 100, status: messages.info }, start: false, end: false, tag: LogTags.PARSE_END });
+
+        const report = await ReportLayer.findById(reportId);
+
+        let sheet = undefined;
+        if (report?.sheetNo && typeof report?.sheetNo === "number") {
+            sheet = workbook.SheetNames[report?.sheetNo || 0];
+        } else if (sheetName) {
+            sheet = workbook.SheetNames[workbook?.SheetNames.indexOf(sheetName) === -1 ? 0 : workbook?.SheetNames.indexOf(sheetName)];
+        } else {
+            sheet = workbook.SheetNames[0];
+        }
+
+        const worksheet = workbook.Sheets[sheet];
+
+
+        let jsonData;
+        // if ((skipRow && skipRow > 0) || (endRow && endRow > 0) || (startColumn && startColumn > 1)) {
+        let data = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+        let formatted = formatData(data, skipRow, endRow, true, startColumn)
+        jsonData = escapeChars(formatted)
+        // } else {
+        //     let data = XLSX.utils.sheet_to_json(worksheet);
+        //     jsonData = escapeChars(data)
+        // }
+
+        if (report?.mergeRows > 0 && jsonData?.length > 0) {
+            const start = report?.mergeStartRow || 0
+            let merge = [];
+            for (let i = start; i < jsonData.length; i += report?.mergeRows) {
+                const d = Object?.values(jsonData[i] || [])
+                let obj = { ...jsonData[i] };
+                let c = 0;
+                try {
+                    for (let j = i + 1; j < i + report?.mergeRows; j++) {
+                        let data = Object.values(jsonData[j])
+                        data?.map((value, index) => { obj[`c${c}${index}`] = value })
+                        c = c + 1;
+                    }
+                } catch (error) {
+                    // console.log(error, jsonData[i])
+                }
+                merge.push(obj)
+            }
+            jsonData = merge;
+        }
+
+        // console.log(jsonData.slice(0, 10))
+        if (jsonData && jsonData instanceof Array && jsonData.length === 0) {
+            resolve()
+        }
+
+        if (report) {
+
+
+            let uploadObj: { [key: string]: any } = {
+                cleansing: false,
+                requestId,
+                error: false,
+                ignored: false
+            }
+
+            if (reportDate != undefined) {
+                uploadObj['REPORT_DATE'] = reportDate
+            }
+
+            await CommonLayer.removeCollection({ collectionName: `${requestId.toString()}_source`, mongo: true });
+            await CommonLayer.uploadDataToDBBatchWise({ data: jsonData, collectionName: `${requestId.toString()}_source`, tag: 'stage: xl parse inserting/updating the uploaded file data', requestId: requestId, log: true, properties: uploadObj, mongo: true });
+
+            console.timeEnd('upload process')
+
+            resolve({ totalUploadedRecords: jsonData.length })
+        }
+
+    } catch (error) {
+        await socketLog({ requestId, reportId, status: messages.error, fileSize: undefined, userId: undefined, userEmail: undefined, notification: { tag: LogTags.STATS, error: true, message: error?.message, status: messages.error }, start: false, end: false, tag: LogTags.STATS });
+        throw error;
+    }
+}
+
+
+
+const formatData = (data: Array<any>, row: number, endRow: number, filter: boolean = true, startColumn: number, addEmptyKey: boolean = true) => {
+    try {
+        let fData: Array<Object> = []
+
+        // console.log('Row', row, endRow)
+        if (!data || data.length == 0) {
+            return []
+        }
+        let altered = []
+        if (filter) {
+            for (let x of data) {
+                const filteredData = x.filter((item: any) => item !== undefined);
+                if (filteredData.length > 0) {
+                    altered.push(filteredData);
+                }
+            }
+        } else {
+            altered = data;
+        }
+
+
+        let headings = [];
+
+        let rows = altered[row].slice(startColumn || 0);
+
+        console.log(row, addEmptyKey, rows, data.slice(0, 10))
+        // if (rows == undefined) {
+        //     return []
+        // }
+
+        rows = addEmptyKey ? Array.from({ length: 50 }).fill("__EMPTY") : addIndexToDuplicates(rows);
+
+        console.log(rows)
+        for (let x in rows) {
+            if (x.trim() != "" && !addEmptyKey) {
+                headings.push(rows[x].split(' ').join('_'))
+            } else {
+                headings.push(`__EMPTY_${x}`)
+            }
+        }
+
+        let length = altered.length
+
+        console.log('headings', headings);
+
+        if (endRow > 0) {
+            console.log('Total Length', length)
+            length = length - endRow
+            console.log('End Row: ', endRow, "Total length Going To Read ====> ", length)
+        }
+
+        // console.log(headings)
+        for (let i = row; i < length; i++) {
+            if (i == 0 || i == row) {
+                continue
+            }
+            else if (i <= 10) {
+                continue
+            }
+            let obj: { [key: string]: any } = {}
+            let arr = altered[i]
+            for (let j = 0; j < arr.length; j++) {
+                if (headings.length > j) {
+                    obj[headings[j]] = arr[j]
+                }
+            }
+            fData.push(obj)
+        }
+        return fData;
+    } catch (error) {
+        return []
+    }
+}

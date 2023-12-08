@@ -1,0 +1,53 @@
+export const triggerReports = async ({ reportId, input }) => {
+    try {
+        let { userEmail = "", userId = "", masterRequestId = "", ...data } = input;
+
+        const trigger = await getReportTriggers({ reportId });
+        
+        if (trigger && !Array.isArray(trigger) && Array.isArray(trigger?.triggerReports)) {
+            for (let value of trigger?.triggerReports) {
+
+                let isTriggerValid = await checkDependencies({ dependency: value?.dependencies || [] })
+
+                if (!isTriggerValid) {
+                    continue;
+                }
+
+                if (value.triggerType === "MERGEREPORT") {
+
+                    const queueParams = {
+                        MessageBody: JSON.stringify({ reportId: value.id, requestId: uuid(), longQueue: true, userEmail, userId, data, reset: true }),
+                        QueueUrl: config.longMergeQueueUrl,
+                    };
+                    console.log("queueParams", queueParams)
+
+                    await sqs.sendMessage(queueParams).promise();
+                }
+                else if (value.triggerType === "EXISTING") {
+
+                    const queueParams = {
+                        MessageBody: JSON.stringify({ reportId: value.id, requestId: uuid(), longQueue: true, userEmail, userId, data, reset: true }),
+                        QueueUrl: config.longCleansingQueueUrl
+                    };
+                    console.log("queueParams", queueParams)
+
+                    await sqs.sendMessage(queueParams).promise();
+
+                } else if (value.triggerType === "WEBHOOK") {
+                    console.log("Executing webhook.....");
+                    try {
+                        await sendDataToWebhook({ reportId: value.id })
+                    } catch (error) {
+                        await execTriggers({ reportId: value.id, triggerType: value.triggerType, data: input })
+                    }
+                }
+
+                await execTriggers({ reportId: value.id, triggerType: value.triggerType, data: input })
+            }
+        }
+        return;
+    } catch (error) {
+        console.log("Error:[triggerReports]", error);
+        return;
+    }
+}

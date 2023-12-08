@@ -1,0 +1,2132 @@
+"leftReportView": true,
+"rightReportView": true
+
+{
+    "reportId": ObjectId("64759b5cf68982c6f360f3a7"),
+    "reportName": "pos vs srs",
+    "leftQuery": "LEFT JOIN pos_report_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": " LEFT JOIN srs_transformed AS sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "fullQuery": "LEFT JOIN pos_report_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN srs_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "posStoreCode",
+        "posSystemDate",
+        "posTotalSales",
+        "srsTotalSales"
+    ],
+    "sourceTwoColumnNames": [
+        "region",
+        "srsDate",
+        "srsStoreCode",
+        "srsTotalSales",
+        "storeName"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_two",
+    "rightSourceKey": "hash"
+}
+
+
+{
+    "reportId": ObjectId("64821e2ab12f587efbb3fede"),
+    "reportName": "olo vs swiggy",
+    "leftQuery": "LEFT JOIN olo_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": " LEFT JOIN swiggy_transformed AS sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "fullQuery": "LEFT JOIN olo_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN swiggy_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "bankReconciled",
+        "cgst",
+        "faOrderRef",
+        "grossAmount",
+        "gstOnPgCharges",
+        "gstRecovery",
+        "gstonpackaging",
+        "id",
+        "itemTotal",
+        "matchRef",
+        "netPayable",
+        "oloOrderDate",
+        "orderId",
+        "orderNumber",
+        "orderSource",
+        "orderStatus",
+        "orderTime",
+        "orderedDate",
+        "packingCharges",
+        "payables",
+        "pgCharges",
+        "posOrderDate",
+        "posOrderStatus",
+        "refund",
+        "refundedBy",
+        "reportDate",
+        "restaurantBill",
+        "restdiscount",
+        "sgst",
+        "storeCode",
+        "storeName",
+        "swgdiscountBankAlliance",
+        "swiggyFinalStatus",
+        "swiggyGrossAmount",
+        "swiggyOrderDate",
+        "swiggyPayAmt",
+        "swiggyRef",
+        "tDiscount",
+        "tdsRecovery"
+    ],
+    "sourceTwoColumnNames": [
+        "cgst",
+        "gstOnPgCharges",
+        "gstRecovery",
+        "gstonpackaging",
+        "itemTotal",
+        "netPayable",
+        "orderedDate",
+        "packingCharges",
+        "payables",
+        "pgCharges",
+        "refund",
+        "reportDate",
+        "restaurantBill",
+        "restdiscount",
+        "sgst",
+        "swgdiscountBankAlliance",
+        "swiggyFinalStatus",
+        "swiggyPayAmt",
+        "swiggyRef",
+        "tDiscount",
+        "tdsRecovery",
+        "swiggyGrossAmount"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_two",
+    "rightSourceKey": "hash"
+}
+
+{
+    "reportId": ObjectId("647d70ebdaadbbf073ce9ca3"),
+    "reportName": "OLO_vs_Zomato",
+    "leftQuery": "LEFT JOIN olo_zomato_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": " LEFT JOIN zomato_transformed AS sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "fullQuery": "LEFT JOIN olo_zomato_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN zomato_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "POSGrossAmountAfterAOD",
+        "POSGrossAmountBeforeAOD",
+        "PaymentMethod",
+        "SRSEvchAmount",
+        "TippingAmount",
+        "actualReverseAmount",
+        "couponCode",
+        "customerEmailId",
+        "customerMobile",
+        "customerName",
+        "deliveryCharges",
+        "deliveryDate",
+        "egvPgiRefNo",
+        "evoucherAmount",
+        "faOrderRef",
+        "grossAmount",
+        "netGrossamount",
+        "netPrice",
+        "oloOrderDate",
+        "orderDeliveryType",
+        "orderId",
+        "orderNumber",
+        "orderSource",
+        "orderStatus",
+        "orderStatusOlo",
+        "orderTime",
+        "paymentGateway",
+        "paymentType",
+        "pgFaAmount",
+        "pgRefund",
+        "pizzaPalspointsBurnPoints",
+        "posOrderDate",
+        "posOrderStatus",
+        "potpBurnedPoints",
+        "potpBurnedPointsPgiRefNo",
+        "refundedBy",
+        "settelmentDate",
+        "settlementStatus",
+        "status",
+        "storeCity",
+        "storeCode",
+        "storeName",
+        "storeState",
+        "taxRsPs",
+        "tentNumber",
+        "totalPaymentRecieved",
+        "walletAmount",
+        "walletRefund",
+        "zomatoRef",
+        "matchRef"
+    ],
+    "sourceTwoColumnNames": [
+        "dominosOrderId",
+        "gst18",
+        "gstBaseAmount",
+        "netAmount",
+        "orderDate",
+        "orderType",
+        "paymentChannel",
+        "pg12",
+        "pg12Gst",
+        "pgBaseAmount",
+        "requestId",
+        "serviceTax",
+        "settlementAmount",
+        "storeId",
+        "tds194O",
+        "tdsBaseAmount",
+        "totalAmount",
+        "utrDate",
+        "utrNumber",
+        "zomatoRef",
+        "date",
+        "posOrderDate",
+        "zomatoGrossAmount"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "reconciledBucket",
+        "total",
+        "variance"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_two",
+    "rightSourceKey": "hash"
+}
+
+
+{
+    "reportId": ObjectId("648d5cd832e94af837a66e4d"),
+    "reportName": "olo_vs_paytmpg",
+    "leftQuery": "LEFT JOIN olo_paytmpg_collection AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN paytmpg_report_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "fullQuery": "LEFT JOIN olo_paytmpg_collection AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN paytmpg_report_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "POSGrossAmountAfterAOD",
+        "POSGrossAmountBeforeAOD",
+        "PaymentMethod",
+        "SRSEvchAmount",
+        "TippingAmount",
+        "actualReverseAmount",
+        "couponCode",
+        "customerEmailId",
+        "customerMobile",
+        "customerName",
+        "deliveryCharges",
+        "deliveryDate",
+        "egvPgiRefNo",
+        "evoucherAmount",
+        "faOrderRef",
+        "grossAmount",
+        "netGrossamount",
+        "netPrice",
+        "oloOrderDate",
+        "orderDeliveryType",
+        "orderId",
+        "orderNumber",
+        "orderSource",
+        "orderStatus",
+        "orderStatusOlo",
+        "orderTime",
+        "paymentGateway",
+        "paymentType",
+        "paytmMicroRef",
+        "pgFaAmount",
+        "pgRefund",
+        "pizzaPalspointsBurnPoints",
+        "posOrderDate",
+        "posOrderStatus",
+        "potpBurnedPoints",
+        "potpBurnedPointsPgiRefNo",
+        "refundedBy",
+        "settelmentDate",
+        "settlementStatus",
+        "status",
+        "storeCity",
+        "storeCode",
+        "storeName",
+        "storeState",
+        "taxRsPs",
+        "tentNumber",
+        "totalPaymentRecieved",
+        "walletAmount",
+        "walletRefund",
+        "matchRef"
+    ],
+    "sourceTwoColumnNames": [
+        "posOrderDate",
+        "totalAmount",
+        "acquiringFee",
+        "acquiringTax",
+        "amount",
+        "bankTransactionId",
+        "cardNetwork",
+        "channel",
+        "commission",
+        "customerEmailId",
+        "customerId",
+        "customerPhoneNo",
+        "extserialno",
+        "feefactor",
+        "gateway",
+        "gst",
+        "merchantBillId",
+        "merchantName",
+        "merchantRefId",
+        "merchantUniqueRef",
+        "nickname",
+        "orderId",
+        "originalMid",
+        "paymentMode",
+        "payoutDate",
+        "payoutId",
+        "platformFee",
+        "platformTax",
+        "prn",
+        "prnValidated",
+        "referenceNo",
+        "requestType",
+        "rrncode",
+        "settledAmount",
+        "settledDate",
+        "settlementType",
+        "status",
+        "subMerchantName",
+        "tipAmount",
+        "transactionId",
+        "transactionType",
+        "updatedDate",
+        "utrNo"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "reconciledBucket",
+        "total",
+        "variance"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_one",
+    "rightSourceKey": "hash"
+}
+//existing report
+{
+    "reportId": ObjectId("64ed97b08cf28ed6454fa6d9"),
+    "reportName": "olo_amazonpay_bank",
+    "leftQuery": "LEFT JOIN olo_vs_amazonpay_existing_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN bank_group_by_value_date_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "fullQuery": "LEFT JOIN olo_vs_amazonpay_existing_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN bank_group_by_value_date_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "actualreverseamount",
+        "amazonorderreferenceid",
+        "amazonpayref",
+        "amazontransactionid",
+        "couponcode",
+        "currencycode",
+        "customeremailid",
+        "customermobile",
+        "customername",
+        "deliverycharges",
+        "deliverydate",
+        "discrepancy",
+        "egvpgirefno",
+        "evoucheramount",
+        "faorderref",
+        "grossamount",
+        "left_side_report_present",
+        "matchref",
+        "netgrossamount",
+        "netprice",
+        "nettransactionamount",
+        "oloorderdate",
+        "orderdeliverytype",
+        "orderid",
+        "ordernumber",
+        "ordersource",
+        "orderstatus",
+        "orderstatusolo",
+        "ordertime",
+        "paymentgateway",
+        "paymentmethod",
+        "paymenttype",
+        "pgfaamount",
+        "pgrefund",
+        "pizzapalspointsburnpoints",
+        "posgrossamountafteraod",
+        "posgrossamountbeforeaod",
+        "posorderdate",
+        "posorderstatus",
+        "potpburnedpoints",
+        "potpburnedpointspgirefno",
+        "reason",
+        "reasoncomment",
+        "refundedby",
+        "right_side_report_present",
+        "sellerorderid",
+        "sellerreferenceid",
+        "settelmentdate",
+        "settlementid",
+        "settlementstatus",
+        "srsevchamount",
+        "status",
+        "storecity",
+        "storecode",
+        "storename",
+        "storestate",
+        "taxrsps",
+        "tentnumber",
+        "tippingamount",
+        "total",
+        "totalpaymentrecieved",
+        "totaltransactionfee",
+        "transactionamount",
+        "transactiondescription",
+        "transactionfixedfee",
+        "transactionpercentagefee",
+        "transactionposteddate1",
+        "transactiontype",
+        "uniquetransactionreference",
+        "utrdate",
+        "vairance",
+        "walletamount",
+        "walletrefund"
+    ],
+    "sourceTwoColumnNames": [
+        "nextValueDate",
+        "absVariance",
+        "balance",
+        "branch",
+        "createdAt",
+        "credits",
+        "date",
+        "debits",
+        "description",
+        "discrepancy",
+        "reconciled",
+        "referenceNo",
+        "rightId",
+        "source",
+        "updatedAt",
+        "valueDate",
+        "variance"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "reconciledBucket",
+        "total",
+        "variance"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_one",
+    "rightSourceKey": "hash"
+}
+
+{
+    "reportId": ObjectId("64f4af61579fecc806b873df"),
+    "reportName": "olo_vs_irctc",
+    "leftQuery": "LEFT JOIN olo_irctc_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN irctc_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "fullQuery": "LEFT JOIN olo_irctc_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN irctc_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "actualreverseamount",
+        "amountdifference",
+        "bankrefno1",
+        "browser",
+        "cashamountrecieved",
+        "customername",
+        "deliverdate",
+        "delivertime",
+        "deliverycharges",
+        "discountamount",
+        "discountdetails",
+        "emailid",
+        "evoucheramount",
+        "finalprice",
+        "mobileno",
+        "netprice",
+        "orderdate",
+        "orderid",
+        "orderno",
+        "orderstatus(pos)",
+        "ordertime",
+        "ordertype",
+        "paymentmethod",
+        "paymentmethod1",
+        "paymentmethod2",
+        "paymentstatusatpgend",
+        "paymenttype",
+        "pgamountrecieved",
+        "pgirefno1",
+        "pizzapalspoints#burnpoints",
+        "posamount",
+        "posorderdate",
+        "potp#burnpointsref",
+        "potpamountrecieved",
+        "potpburnpoint",
+        "ref11",
+        "ref1amount",
+        "ref2amouunt",
+        "settled",
+        "source",
+        "statusinpos",
+        "storecity",
+        "storecode",
+        "storename",
+        "storestate",
+        "tax",
+        "tentnumber",
+        "tentnumber1",
+        "tentnumber2",
+        "timeperiod",
+        "totalpaymentreceived",
+        "type",
+        "walletamountrecieved"
+    ],
+    "sourceTwoColumnNames": [
+        "adjustmentType",
+        "aggregatorOrderId",
+        "amount",
+        "bookedBy",
+        "closingBalance",
+        "date1",
+        "deliveryCharge",
+        "deliveryDate1",
+        "discount",
+        "margin",
+        "marginRate",
+        "openingBalance",
+        "orderId",
+        "outletId",
+        "outletName",
+        "remarks",
+        "serialNo",
+        "totalBaseAmount",
+        "totalGst",
+        "totalPayable",
+        "transactionId",
+        "transactionMethod",
+        "transactionMode",
+        "transactionType",
+        "vendorName"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_one",
+    "rightSourceKey": "hash"
+}
+
+
+{
+    "reportId": ObjectId("64d2069c6a80b5a6112c32ca"),
+    "reportName": "OLO_vs_PaytmMicro",
+    "leftQuery": "LEFT JOIN olo_paytmmicro_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN paytm_micro_report_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "fullQuery": "LEFT JOIN olo_paytmmicro_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN paytm_micro_report_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "matchRef",
+        "POSGrossAmountAfterAOD",
+        "POSGrossAmountBeforeAOD",
+        "PaymentMethod",
+        "SRSEvchAmount",
+        "TippingAmount",
+        "actualReverseAmount",
+        "couponCode",
+        "customerEmailId",
+        "customerMobile",
+        "customerName",
+        "deliveryCharges",
+        "deliveryDate",
+        "egvPgiRefNo",
+        "evoucherAmount",
+        "faOrderRef",
+        "grossAmount",
+        "netGrossamount",
+        "netPrice",
+        "oloOrderDate",
+        "orderDeliveryType",
+        "orderId",
+        "orderNumber",
+        "orderSource",
+        "orderStatus",
+        "orderStatusOlo",
+        "orderTime",
+        "paymentGateway",
+        "paymentType",
+        "paytmMicroRef",
+        "pgFaAmount",
+        "pgRefund",
+        "pizzaPalspointsBurnPoints",
+        "posOrderDate",
+        "posOrderStatus",
+        "potpBurnedPoints",
+        "potpBurnedPointsPgiRefNo",
+        "refundedBy",
+        "settelmentDate",
+        "settlementStatus",
+        "status",
+        "storeCity",
+        "storeCode",
+        "storeName",
+        "storeState",
+        "taxRsPs",
+        "tentNumber",
+        "totalPaymentRecieved",
+        "walletAmount",
+        "walletRefund"
+    ],
+    "sourceTwoColumnNames": [
+        "acquiringFee",
+        "acquiringTax",
+        "amount",
+        "bankTransactionId",
+        "cardNetwork",
+        "channel",
+        "commission",
+        "customerEmailId",
+        "customerId",
+        "customerPhoneNo",
+        "extserialno",
+        "feefactor",
+        "gateway",
+        "gst",
+        "merchantBillId",
+        "merchantName",
+        "merchantRefId",
+        "merchantUniqueRef",
+        "nickname",
+        "orderId",
+        "originalMid",
+        "paymentMode",
+        "payoutDate",
+        "payoutId",
+        "platformFee",
+        "platformTax",
+        "prn",
+        "prnValidated",
+        "referenceNo",
+        "requestType",
+        "rrncode",
+        "settledAmount",
+        "settledDate",
+        "settlementType",
+        "status",
+        "subMerchantName",
+        "tipAmount",
+        "transactionId",
+        "transactionType",
+        "updatedDate",
+        "utrNo",
+        "netAmount",
+        "totalAmount"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance",
+        "reconciledBucket"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_one",
+    "rightSourceKey": "hash"
+}
+
+{
+    "reportId": ObjectId("64d206716a80b5a6112c2fd1"),
+    "reportName": "OLO_vs_PaytmWallet",
+    "leftQuery": "LEFT JOIN olo_paytmwallet_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN paytm_wallet_report_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "fullQuery": "LEFT JOIN olo_paytmwallet_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN paytm_wallet_report_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "POSGrossAmountAfterAOD",
+        "POSGrossAmountBeforeAOD",
+        "PaymentMethod",
+        "SRSEvchAmount",
+        "TippingAmount",
+        "actualReverseAmount",
+        "couponCode",
+        "customerEmailId",
+        "customerMobile",
+        "customerName",
+        "deliveryCharges",
+        "deliveryDate",
+        "egvPgiRefNo",
+        "evoucherAmount",
+        "faOrderRef",
+        "grossAmount",
+        "netGrossamount",
+        "netPrice",
+        "oloOrderDate",
+        "orderDeliveryType",
+        "orderId",
+        "orderNumber",
+        "orderSource",
+        "orderStatus",
+        "orderStatusOlo",
+        "orderTime",
+        "paymentGateway",
+        "paymentType",
+        "paytmWalletRef",
+        "pgFaAmount",
+        "pgRefund",
+        "pizzaPalspointsBurnPoints",
+        "posOrderDate",
+        "posOrderStatus",
+        "potpBurnedPoints",
+        "potpBurnedPointsPgiRefNo",
+        "refundedBy",
+        "settelmentDate",
+        "settlementStatus",
+        "status",
+        "storeCity",
+        "storeCode",
+        "storeName",
+        "storeState",
+        "taxRsPs",
+        "tentNumber",
+        "totalPaymentRecieved",
+        "walletAmount",
+        "walletRefund",
+        "matchRef"
+    ],
+    "sourceTwoColumnNames": [
+        "acquiringFee",
+        "acquiringTax",
+        "amount",
+        "bankTransactionId",
+        "cardNetwork",
+        "channel",
+        "commission",
+        "customerEmailId",
+        "customerId",
+        "customerPhoneNo",
+        "extserialno",
+        "feefactor",
+        "gateway",
+        "gst",
+        "merchantBillId",
+        "merchantName",
+        "merchantRefId",
+        "merchantUniqueRef",
+        "nickname",
+        "orderId",
+        "originalMid",
+        "paymentMode",
+        "payoutDate",
+        "payoutId",
+        "platformFee",
+        "platformTax",
+        "prn",
+        "prnValidated",
+        "referenceNo",
+        "requestType",
+        "rrncode",
+        "settledAmount",
+        "settledDate",
+        "settlementType",
+        "status",
+        "subMerchantName",
+        "tipAmount",
+        "transactionId",
+        "transactionType",
+        "updatedDate",
+        "utrNo",
+        "netAmount",
+        "totalAmount"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance",
+        "reconciledBucket"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_one",
+    "rightSourceKey": "hash"
+}
+
+{
+    "reportId": ObjectId("64d1d6786a80b5a611283554"),
+    "reportName": "OLO_vs_Phonepe",
+    "leftQuery": "LEFT JOIN olo_phonepe_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN phonepe_report_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "fullQuery": "LEFT JOIN olo_phonepe_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN phonepe_report_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "matchRef",
+        "couponCode",
+        "customerEmailId",
+        "customerMobile",
+        "customerName",
+        "deliveryDate",
+        "egvPgiRefNo",
+        "evoucherAmount",
+        "faOrderRef",
+        "grossAmountRsPs",
+        "netGrossamount",
+        "netPrice",
+        "oloOrderDate",
+        "orderDeliveryType",
+        "orderId",
+        "orderNumber",
+        "orderSource",
+        "orderStatus",
+        "orderStatusOlo",
+        "orderTime",
+        "paymentGateway",
+        "paymentMethod",
+        "paymentType",
+        "pgFaAmount",
+        "pgRefund",
+        "phonepeRef",
+        "pizzaPalspointsBurnPoints",
+        "posGrossAmountAfterAod",
+        "posGrossAmountBeforeAod",
+        "posOrderDate",
+        "posOrderStatus",
+        "potpBurnedPoints",
+        "potpBurnedPointsPgiRefNo",
+        "refundedBy",
+        "settelmentDate",
+        "settlementStatus",
+        "storeCity",
+        "storeCode",
+        "storeName",
+        "storeState",
+        "taxRsPs",
+        "tentNumber",
+        "totalPaymentRecieved",
+        "walletAmount"
+    ],
+    "sourceTwoColumnNames": [
+        "amount",
+        "bankReferenceNo",
+        "cgst",
+        "fee",
+        "from",
+        "igst",
+        "instrument",
+        "merchantOrderId",
+        "merchantReferenceId",
+        "merchantStoreId",
+        "netAmount",
+        "paymentType",
+        "phonePeReferenceId",
+        "remarks",
+        "settlementDate",
+        "sgst",
+        "sid",
+        "transactionDate1"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance",
+        "reconciledBucket"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_one",
+    "rightSourceKey": "hash"
+}
+
+{
+    "reportId": ObjectId("64d4800ad1cfa1d8f1196d10"),
+    "reportName": "OLO_vs_Razorpay",
+    "leftQuery": "LEFT JOIN olo_razorpay_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN razorpay_report_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "fullQuery": "LEFT JOIN olo_razorpay_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN razorpay_report_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "POSGrossAmountAfterAOD",
+        "POSGrossAmountBeforeAOD",
+        "PaymentMethod",
+        "SRSEvchAmount",
+        "TippingAmount",
+        "actualReverseAmount",
+        "couponCode",
+        "customerEmailId",
+        "customerMobile",
+        "customerName",
+        "deliveryCharges",
+        "deliveryDate",
+        "egvPgiRefNo",
+        "evoucherAmount",
+        "faOrderRef",
+        "grossAmount",
+        "netGrossamount",
+        "netPrice",
+        "oloOrderDate",
+        "orderDeliveryType",
+        "orderId",
+        "orderNumber",
+        "orderSource",
+        "orderStatus",
+        "orderStatusOlo",
+        "orderTime",
+        "paymentGateway",
+        "paymentType",
+        "pgFaAmount",
+        "pgRefund",
+        "pizzaPalspointsBurnPoints",
+        "posOrderDate",
+        "posOrderStatus",
+        "potpBurnedPoints",
+        "potpBurnedPointsPgiRefNo",
+        "razorPayRef",
+        "refundedBy",
+        "settelmentDate",
+        "settlementStatus",
+        "status",
+        "storeCity",
+        "storeCode",
+        "storeName",
+        "storeState",
+        "taxRsPs",
+        "tentNumber",
+        "totalPaymentRecieved",
+        "walletAmount",
+        "walletRefund",
+        "matchRef"
+    ],
+    "sourceTwoColumnNames": [
+        "amount",
+        "cardType",
+        "cleansing",
+        "credit",
+        "currency",
+        "debit",
+        "entityCreatedAt1",
+        "entityId",
+        "error",
+        "feeExclusivetax",
+        "ignored",
+        "issuerName",
+        "orderIdRazorpay",
+        "orderNotes",
+        "orderReceipt",
+        "paymentMethodRazorpay",
+        "paymentNotes",
+        "requestId",
+        "settledAt",
+        "settledBy",
+        "settlementId",
+        "settlementUtr",
+        "tax",
+        "transactionEntity"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance",
+        "reconciledBucket",
+        "total"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_one",
+    "rightSourceKey": "hash"
+}
+
+
+{
+    "reportId": ObjectId("648d6b34f54c1dcdc56a0bce"),
+    "reportName": "OLO_vs_paytm",
+    "leftQuery": "LEFT JOIN olo_paytm_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN paytm_report_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "fullQuery": "LEFT JOIN olo_paytm_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN paytm_report_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "POSGrossAmountAfterAOD",
+        "POSGrossAmountBeforeAOD",
+        "PaymentMethod",
+        "SRSEvchAmount",
+        "TippingAmount",
+        "actualReverseAmount",
+        "couponCode",
+        "customerEmailId",
+        "customerMobile",
+        "customerName",
+        "deliveryCharges",
+        "deliveryDate",
+        "egvPgiRefNo",
+        "evoucherAmount",
+        "matchRef",
+        "faOrderRef",
+        "grossAmount",
+        "netGrossamount",
+        "netPrice",
+        "oloOrderDate",
+        "orderDeliveryType",
+        "orderId",
+        "orderNumber",
+        "orderSource",
+        "orderStatus",
+        "orderStatusOlo",
+        "orderTime",
+        "paymentGateway",
+        "paymentType",
+        "paytmRef",
+        "pgFaAmount",
+        "pgRefund",
+        "pizzaPalspointsBurnPoints",
+        "posOrderDate",
+        "posOrderStatus",
+        "potpBurnedPoints",
+        "potpBurnedPointsPgiRefNo",
+        "refundedBy",
+        "settelmentDate",
+        "settlementStatus",
+        "status",
+        "storeCity",
+        "storeCode",
+        "storeName",
+        "storeState",
+        "taxRsPs",
+        "tentNumber",
+        "totalPaymentRecieved",
+        "walletAmount",
+        "walletRefund"
+    ],
+    "sourceTwoColumnNames": [
+        "acquiringFee",
+        "acquiringTax",
+        "bankTransactionId",
+        "channel",
+        "commission",
+        "customerEmailId",
+        "customerId",
+        "customerPhoneNo",
+        "extserialno",
+        "gateway",
+        "gst",
+        "linkCustomerName",
+        "merchantBillId",
+        "merchantName",
+        "merchantRefId",
+        "merchantUniqueRef",
+        "nickname",
+        "orderId",
+        "orderId2",
+        "orderId3",
+        "originalMid",
+        "paymentMode",
+        "payoutId",
+        "paytmGrossAmount",
+        "paytmOrderId",
+        "platformFee",
+        "platformTax",
+        "prn",
+        "prnValidated",
+        "promocode",
+        "promocodeResponse",
+        "referenceNo",
+        "referenceTransactionId",
+        "requestId",
+        "requestType",
+        "settledAmount",
+        "settlementType",
+        "status",
+        "subMerchantName",
+        "tipAmount",
+        "transactionId",
+        "transactionType",
+        "txnDate",
+        "utrNo",
+        "validateCount",
+        "netAmount",
+        "totalAmount"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance",
+        "reconciledBucket",
+        "total"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_one",
+    "rightSourceKey": "hash"
+}
+
+
+{
+    "reportId": ObjectId("648d6c3ef54c1dcdc56a0bdc"),
+    "reportName": "OLO_vs_PayU",
+    "leftQuery": "LEFT JOIN olo_payu_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN payu_report_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "fullQuery": "LEFT JOIN olo_payu_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN payu_report_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "actualReverseAmount",
+        "bankTenderedAmount",
+        "cashAmount",
+        "couponCode",
+        "customerEmailId",
+        "customerMobile",
+        "customerName",
+        "deliveryCharges",
+        "deliveryTime",
+        "egvPgiRefNo",
+        "evoucherAmount",
+        "faOrderRef",
+        "grossAmount",
+        "loyaltyEarnedPoints",
+        "matchRef",
+        "netGrossamount",
+        "netPrice",
+        "oloOrderDate",
+        "orderDeliveryType",
+        "orderId",
+        "orderNumber",
+        "orderSource",
+        "orderStatus",
+        "orderStatusOlo",
+        "orderTime",
+        "payURef",
+        "paymentGateway",
+        "paymentMethod",
+        "paymentType",
+        "paymentstatusAtPGend",
+        "pgFaAmount",
+        "pgRefund",
+        "pizzaPalspointsBurnPoints",
+        "posGrossAmountBeforeAod",
+        "posOrderDate",
+        "posOrderStatus",
+        "potpBurnedPoints",
+        "potpBurnedPointsPgiRefNo",
+        "refundDate",
+        "refundedBy",
+        "reverseAmountAsperPos",
+        "settlementStatus",
+        "status",
+        "storeCity",
+        "storeCode",
+        "storeName",
+        "storeState",
+        "taxRsPs",
+        "tentNumber",
+        "tippingAmount",
+        "totalPaymentRecieved",
+        "walletAmount",
+        "walletRefund"
+    ],
+    "sourceTwoColumnNames": [
+        "amountInr",
+        "bankArn",
+        "bankName",
+        "bankReferenceNo",
+        "customerEmail",
+        "customerName",
+        "customerPhone",
+        "date",
+        "merchantUtr",
+        "netAmount",
+        "payUid",
+        "paymentGateway",
+        "paymentProcessingFee",
+        "paymentType",
+        "payuGrossAmount",
+        "payuOrderId",
+        "payuStoreCode",
+        "requestId",
+        "requestedAction",
+        "serviceTax",
+        "settlement",
+        "settlementDate",
+        "status",
+        "transactionId",
+        "udf4"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance",
+        "reconciledBucket",
+        "total"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_one",
+    "rightSourceKey": "hash"
+}
+
+
+{
+    "reportId": ObjectId("648d47d674837b03ca3acf59"),
+    "reportName": "OLO_vs_Billdesk",
+    "leftQuery": "LEFT JOIN olo_billdesk_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN billdesk_report_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "fullQuery": "LEFT JOIN olo_billdesk_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN billdesk_report_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "POSGrossAmountAfterAOD",
+        "POSGrossAmountBeforeAOD",
+        "PaymentMethod",
+        "SRSEvchAmount",
+        "TippingAmount",
+        "actualReverseAmount",
+        "billdeskRef",
+        "couponCode",
+        "customerEmailId",
+        "customerMobile",
+        "customerName",
+        "deliveryCharges",
+        "deliveryDate",
+        "egvPgiRefNo",
+        "evoucherAmount",
+        "matchRef",
+        "faOrderRef",
+        "grossAmount",
+        "netGrossamount",
+        "netPrice",
+        "oloOrderDate",
+        "orderDeliveryType",
+        "orderId",
+        "orderNumber",
+        "orderSource",
+        "orderStatus",
+        "orderStatusOlo",
+        "orderTime",
+        "paymentGateway",
+        "paymentType",
+        "pgFaAmount",
+        "pgRefund",
+        "pizzaPalspointsBurnPoints",
+        "posOrderDate",
+        "posOrderStatus",
+        "potpBurnedPoints",
+        "potpBurnedPointsPgiRefNo",
+        "refundedBy",
+        "settelmentDate",
+        "settlementStatus",
+        "status",
+        "storeCity",
+        "storeCode",
+        "storeName",
+        "storeState",
+        "taxRsPs",
+        "tentNumber",
+        "totalPaymentRecieved",
+        "walletAmount",
+        "walletRefund"
+    ],
+    "sourceTwoColumnNames": [
+        "bankId",
+        "bankRefNo",
+        "billdeskDate",
+        "billdeskGrossAmount",
+        "billdeskOrderId",
+        "billdeskSettlementDate",
+        "billerId",
+        "chargesRsPs",
+        "filler",
+        "gstRsPs",
+        "netAmountRsPs",
+        "pgiRefNo",
+        "ref1",
+        "ref12",
+        "ref2",
+        "ref3",
+        "ref4",
+        "ref5",
+        "ref6",
+        "ref7",
+        "ref8"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance",
+        "reconciledBucket",
+        "total"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_one",
+    "rightSourceKey": "hash"
+}
+
+{
+    "reportId": ObjectId("648d47d674837b03ca3acf59"),
+    "reportName": "OLO_vs_Billdesk",
+    "leftQuery": "LEFT JOIN olo_billdesk_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN billdesk_report_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "fullQuery": "LEFT JOIN olo_billdesk_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN billdesk_report_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "POSGrossAmountAfterAOD",
+        "POSGrossAmountBeforeAOD",
+        "PaymentMethod",
+        "SRSEvchAmount",
+        "TippingAmount",
+        "actualReverseAmount",
+        "billdeskRef",
+        "couponCode",
+        "customerEmailId",
+        "customerMobile",
+        "customerName",
+        "deliveryCharges",
+        "deliveryDate",
+        "egvPgiRefNo",
+        "evoucherAmount",
+        "matchRef",
+        "faOrderRef",
+        "grossAmount",
+        "netGrossamount",
+        "netPrice",
+        "oloOrderDate",
+        "orderDeliveryType",
+        "orderId",
+        "orderNumber",
+        "orderSource",
+        "orderStatus",
+        "orderStatusOlo",
+        "orderTime",
+        "paymentGateway",
+        "paymentType",
+        "pgFaAmount",
+        "pgRefund",
+        "pizzaPalspointsBurnPoints",
+        "posOrderDate",
+        "posOrderStatus",
+        "potpBurnedPoints",
+        "potpBurnedPointsPgiRefNo",
+        "refundedBy",
+        "settelmentDate",
+        "settlementStatus",
+        "status",
+        "storeCity",
+        "storeCode",
+        "storeName",
+        "storeState",
+        "taxRsPs",
+        "tentNumber",
+        "totalPaymentRecieved",
+        "walletAmount",
+        "walletRefund"
+    ],
+    "sourceTwoColumnNames": [
+        "bankId",
+        "bankRefNo",
+        "billdeskDate",
+        "billdeskGrossAmount",
+        "billdeskOrderId",
+        "billdeskSettlementDate",
+        "billerId",
+        "chargesRsPs",
+        "filler",
+        "gstRsPs",
+        "netAmountRsPs",
+        "pgiRefNo",
+        "ref1",
+        "ref12",
+        "ref2",
+        "ref3",
+        "ref4",
+        "ref5",
+        "ref6",
+        "ref7",
+        "ref8"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance",
+        "reconciledBucket",
+        "total"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_one",
+    "rightSourceKey": "hash"
+}
+
+{
+    "reportId": ObjectId("64e84af1d7f3307971e58675"),
+    "reportName": "Amex_vs_Bank",
+    "leftQuery": "LEFT JOIN amex_existing_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN hdfc_statement_amex_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "fullQuery": "LEFT JOIN amex_existing_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN hdfc_statement_amex_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "settlementAmount",
+        "settlementDate",
+        "submittingMerchantNo"
+    ],
+    "sourceTwoColumnNames": [
+        "chequeRefNo",
+        "closingBalance",
+        "date",
+        "deposit",
+        "source",
+        "transactiondetails",
+        "valuedate",
+        "withdrawal"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance",
+        "reconciledBucket",
+        "total"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_one",
+    "rightSourceKey": "hash"
+}
+
+{
+    "reportId": ObjectId("64ef37d25401ed2161198b34"),
+    "reportName": "SBI_Vs_Bank",
+    "leftQuery": "LEFT JOIN sbi_existing_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN hdfc_statement_sbi_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "fullQuery": "LEFT JOIN sbi_existing_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN hdfc_statement_sbi_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "SBImid",
+        "SBItid",
+        "netAmount",
+        "rrn",
+        "stlDate",
+        "tranDate"
+    ],
+    "sourceTwoColumnNames": [
+        "bankMid",
+        "chequeRefNo",
+        "closingBalance",
+        "date",
+        "deposit",
+        "source",
+        "transactiondetails",
+        "valuedate",
+        "withdrawal"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance",
+        "reconciledBucket",
+        "total"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_one",
+    "rightSourceKey": "hash"
+}
+
+{
+    "reportId": ObjectId("64eb861451c5e89853bfb3f8"),
+    "reportName": "Sodexo_Vs_Bank",
+    "leftQuery": "LEFT JOIN sodexo_existing_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN hdfc_existing_sodexo_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "fullQuery": "LEFT JOIN sodexo_existing_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN hdfc_existing_sodexo_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "authCode",
+        "chequeDate",
+        "chequeUtrNo",
+        "city",
+        "creditAmount",
+        "debitAmount",
+        "invoiceNo",
+        "mid",
+        "netAmount",
+        "newInvoiceNo",
+        "outletId",
+        "pin",
+        "settlementDate",
+        "sodexoTid",
+        "storeCode",
+        "transactionDate"
+    ],
+    "sourceTwoColumnNames": [
+        "chequeRefNo",
+        "closingBalance",
+        "deposit",
+        "source",
+        "transactiondetails",
+        "valuedate",
+        "withdrawal"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance",
+        "reconciledBucket",
+        "total"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_one",
+    "rightSourceKey": "hash"
+}
+
+
+{
+    "reportId": ObjectId("64fb01f35bac6f2f5d0aabf2"),
+    "reportName": "paytm_report_vs_bank_report",
+    "leftQuery": "LEFT JOIN paytm_group_by_utrno_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN bank_utr_group_existing_transformed AS  sourceone ON source.\"hash_two\" = sourceone.hash",
+    "fullQuery": "LEFT JOIN paytm_group_by_utrno_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN bank_utr_group_existing_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "amount",
+        "netAmount",
+        "payoutDate",
+        "settledAmount",
+        "settledDate",
+        "tipAmount",
+        "totalAmount",
+        "utrNo"
+    ],
+    "sourceTwoColumnNames": [
+        "balance",
+        "branch",
+        "credits",
+        "date",
+        "debits",
+        "description",
+        "referenceNo",
+        "source",
+        "valueDate"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance",
+        "reconciledBucket",
+        "total"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_one",
+    "rightSourceKey": "hash"
+}
+
+{
+    "reportId": ObjectId("64fb030c5bac6f2f5d0aac6a"),
+    "reportName": "paytm_wallet_report_vs_bank_report",
+    "leftQuery": "LEFT JOIN paytm_wallet_group_by_utrno_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN irctc_transformed AS  sourcetwo ON source.\"hash_two\" = sourcetwo.hash AND sourcetwo.\"source\"='PAYTM'",
+    "fullQuery": "LEFT JOIN paytm_wallet_group_by_utrno_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN bank_utr_group_existing_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames": [
+        "amount",
+        "netAmount",
+        "payoutDate",
+        "settledAmount",
+        "settledDate",
+        "tipAmount",
+        "totalAmount",
+        "utrNo"
+    ],
+    "sourceTwoColumnNames": [
+        "balance",
+        "branch",
+        "credits",
+        "date",
+        "debits",
+        "description",
+        "referenceNo",
+        "source",
+        "valueDate"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance",
+        "reconciledBucket",
+        "total"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_two",
+    "rightSourceKey": "hash"
+}
+
+{
+    "reportId": ObjectId("64f4af61579fecc806b873df"),
+    "reportName": "OLO_vs_IRCTC",
+    "leftQuery": "LEFT JOIN olo_irctc_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN irctc_transformed AS  sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "fullQuery": "LEFT JOIN olo_irctc_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN irctc_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames":[
+        "actualreverseamount",
+        "amountdifference",
+        "bankrefno1",
+        "browser",
+        "cashamountrecieved",
+        "customername",
+        "deliverdate",
+        "delivertime",
+        "deliverycharges",
+        "discountamount",
+        "discountdetails",
+        "emailid",
+        "evoucheramount",
+        "finalprice",
+        "mobileno",
+        "netprice",
+        "orderdate",
+        "orderid",
+        "orderno",
+        "orderstatus(pos)",
+        "ordertime",
+        "ordertype",
+        "paymentmethod",
+        "paymentmethod1",
+        "paymentmethod2",
+        "paymentstatusatpgend",
+        "paymenttype",
+        "pgamountrecieved",
+        "pgirefno1",
+        "pizzapalspoints#burnpoints",
+        "posamount",
+        "posorderdate",
+        "potp#burnpointsref",
+        "potpamountrecieved",
+        "potpburnpoint",
+        "ref11",
+        "ref1amount",
+        "ref2amouunt",
+        "settled",
+        "source",
+        "statusinpos",
+        "storecity",
+        "storecode",
+        "storename",
+        "storestate",
+        "tax",
+        "tentnumber",
+        "tentnumber1",
+        "tentnumber2",
+        "timeperiod",
+        "totalpaymentreceived",
+        "type",
+        "walletamountrecieved"
+    ],
+    "sourceTwoColumnNames": [
+        "adjustmentType",
+        "aggregatorOrderId",
+        "amount",
+        "bookedBy",
+        "closingBalance",
+        "date1",
+        "deliveryCharge",
+        "deliveryDate1",
+        "discount",
+        "margin",
+        "marginRate",
+        "openingBalance",
+        "orderId",
+        "outletId",
+        "outletName",
+        "remarks",
+        "serialNo",
+        "totalBaseAmount",
+        "totalGst",
+        "totalPayable",
+        "transactionId",
+        "transactionMethod",
+        "transactionMode",
+        "transactionType",
+        "vendorName"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance",
+        "reconciledBucket",
+        "total"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_two",
+    "rightSourceKey": "hash"
+}
+
+{
+    "reportId": ObjectId("64d205f46a80b5a6112c2796"),
+    "reportName": "OLO_vs_amazonpay",
+    "leftQuery": "LEFT JOIN olo_amazonpay_transformed AS  sourceone ON source.\"hash_one\" = sourceone.hash",
+    "rightQuery": "LEFT JOIN amazon_pay_group_by_order_id_transformed AS  sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "fullQuery": "LEFT JOIN olo_amazonpay_transformed AS sourceone ON source.\"hash_one\" = sourceone.hash LEFT JOIN amazon_pay_group_by_order_id_transformed sourcetwo ON source.\"hash_two\" = sourcetwo.hash",
+    "leftGroup": [
+        "hash_one"
+    ],
+    "rightGroup": [
+        "hash_two"
+    ],
+    "fullGroup": [
+        "hash_one",
+        "hash_two"
+    ],
+    "sourceOneColumnNames":[
+        "POSGrossAmountAfterAOD",
+        "POSGrossAmountBeforeAOD",
+        "PaymentMethod",
+        "SRSEvchAmount",
+        "TippingAmount",
+        "actualReverseAmount",
+        "amazonPayRef",
+        "couponCode",
+        "customerEmailId",
+        "customerMobile",
+        "customerName",
+        "deliveryCharges",
+        "deliveryDate",
+        "egvPgiRefNo",
+        "evoucherAmount",
+        "faOrderRef",
+        "grossAmount",
+        "netGrossamount",
+        "netPrice",
+        "oloOrderDate",
+        "orderDeliveryType",
+        "orderId",
+        "orderNumber",
+        "orderSource",
+        "orderStatus",
+        "orderStatusOlo",
+        "orderTime",
+        "paymentGateway",
+        "paymentType",
+        "pgFaAmount",
+        "pgRefund",
+        "pizzaPalspointsBurnPoints",
+        "posOrderDate",
+        "posOrderStatus",
+        "potpBurnedPoints",
+        "potpBurnedPointsPgiRefNo",
+        "refundedBy",
+        "settelmentDate",
+        "settlementStatus",
+        "status",
+        "storeCity",
+        "storeCode",
+        "storeName",
+        "storeState",
+        "taxRsPs",
+        "tentNumber",
+        "totalPaymentRecieved",
+        "walletAmount",
+        "walletRefund"
+    ],
+    "sourceTwoColumnNames": [
+        "amazonorderreferenceid",
+        "amazontransactionid",
+        "currencycode",
+        "matchRef",
+        "nettransactionamount",
+        "sellerorderid",
+        "sellerreferenceid",
+        "settlementid",
+        "storename",
+        "totaltransactionfee",
+        "transactionamount",
+        "transactiondescription",
+        "transactionfixedfee",
+        "transactionpercentagefee",
+        "transactionposteddate1",
+        "transactiontype",
+        "uniquetransactionreference",
+        "utrdate"
+    ],
+    "sourceThreeColumnNames": [
+        ""
+    ],
+    "sourceFourColumnNames": [
+        ""
+    ],
+    "mergeColumnNames": [
+        "absVariance",
+        "date",
+        "discrepancy",
+        "reconciled",
+        "variance",
+        "reconciledBucket",
+        "total"
+    ],
+    "leftSourceKey": "hash",
+    "leftKey": "hash_one",
+    "rightKey": "hash_two",
+    "rightSourceKey": "hash"
+}

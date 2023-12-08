@@ -1,0 +1,430 @@
+{
+    "label": "left total",
+    "columnLabels": [
+        {
+            "label": "Count",
+            "align": "right",
+            "format": "0"
+        },
+        {
+            "label": "PayU Total",
+            "align": "right",
+            "format": "0.00"
+        }
+    ],
+    "filterMap": {
+        "date": "orderdate"
+    },
+    "query": {
+        "select": "SELECT COUNT(source.'_id') AS 'Count',SUM(source.\"netAmount\") AS \"PayU Total\"",
+        "where": "",
+        "group": "GROUP BY source.\"reconciled\"",
+        "from": "FROM \"payu_report_transformed\" AS source"
+    },
+    "defaultResponse": [
+        {
+            "PayU Total": 0,
+            "Status": "Not Found",
+            "Count": 0
+        }
+    ],
+    "columnRows": [],
+    "reconId":ObjectId("64fea94c5bac6f2f5d0ac017"),
+    "reportId":ObjectId("64feae115bac6f2f5d0ac130")
+}
+
+{
+    "label": "total right query",
+    "columnLabels": [
+        {
+            "label": "PaytmWallet Count",
+            "align": "right",
+            "format": "0"
+        },
+        {
+            "label": "PaytmWallet Total",
+            "align": "right",
+            "format": "0.00"
+        }
+    ],
+    "filterMap": {
+        "date": "orderDate"
+    },
+    "query": {
+        "select": "SELECT COUNT(source.'_id') AS 'PaytmWallet Count',SUM(source.\"netGrossamount\") AS \"PaytmWallet Total\"",
+        "where": "WHERE hash_one IN (SELECT d.\"hash_one\" FROM olo_vs_paytmwallet_transformed as \"d\" GROUP BY \"hash_one\" HAVING COUNT(*) = 1 )",
+        "group": "",
+        "from": "FROM \"olo_vs_paytmwallet_transformed\" as \"source\""
+    },
+    "defaultResponse": [
+        {
+            "Count": 0,
+            "Swiggy Total": 0,
+        }
+    ],
+    "columnRows": [],
+    "reportId": ObjectId("64d206716a80b5a6112c2fd1"),
+    "reconId": ObjectId("64d2273efeadfd2c3cc5af4b")
+}
+
+
+
+
+
+
+{
+    "label": "Status reconciled",
+    "columnLabels": [
+        {
+            "label": "Status",
+            "align": "left",
+            "format": ""
+        },
+        {
+            "label": "Count",
+            "align": "right",
+            "format": "0"
+        },
+        {
+            "label": "OLO Total",
+            "align": "right",
+            "format": "0.00"
+        },
+        {
+            "label": "IRCTC Total",
+            "align": "right",
+            "format": "0.00"
+        }
+    ],
+    "query": {
+        "select": "SELECT CAST(COUNT(source.'_id') AS INTEGER) AS 'Count', SUM(source.'netprice') as 'OLO Total',SUM(source.'totalBaseAmount') as 'IRCTC Total' , case when \"reconciled\" = `true` then `Reconciled` when \"reconciled\" = `false` then `UnReconciled` when \"reconciled\" IS NULL  then `Not Found` END AS \"Status\" ",
+        "where": "",
+        "group": "GROUP BY source.'reconciled'"
+    },
+    "defaultResponse": [
+        {
+            "Count": 0,
+            "RazorPay Total": 0,
+            "OLO Total": 0,
+            "Status": "No Reconciled Found"
+        }
+    ],
+    "columnRows": [
+        {
+            "value": "Reconciled",
+            "keyName": "Status",
+            "onClick":ObjectId("652fcadb1535459de5bb6835")
+        },
+        {
+            "value": "UnReconciled",
+            "keyName": "Status",
+            "onClick":ObjectId("652fcadb1535459de5bb6840")
+        }
+    ],
+    "pipeline": [],
+    "reportId":  ObjectId("64f4af61579fecc806b873df"),
+    "reconId": ObjectId("64f4afd9579fecc806b8745e")
+}
+
+
+{
+    "label": "discrepancy",
+    "totalLabel": "Grand Total",
+    "total": true,
+    "columnLabels": [
+        {
+            "label": "Discrepancy",
+            "align": "left",
+            "format": "string"
+        },
+        {
+            "label": "Count",
+            "align": "right",
+            "total": true,
+            "format": "0"
+        },
+        {
+            "label": "PaytmWallet Total",
+            "align": "right",
+            "format": "0.00",
+            "total": true,
+        },
+        {
+            "label": "Bank Total",
+            "align": "right",
+            "format": "0.00",
+            "total": true,
+        }
+    ],
+    "query": {
+        "select": "SELECT CAST(COUNT(source.'_id') AS INTEGER) AS 'Count',SUM(source.'totalAmount') AS 'PaytmWallet Total',SUM(source.'credits') AS 'Bank Total', source.'discrepancy' AS 'Discrepancy' ",
+        "where": "WHERE source.'discrepancy' IS NOT NULL",
+        "group": "GROUP BY source.'discrepancy'"
+    },
+    "defaultResponse": [
+        {
+            "Count": 0,
+            "PaytmWallet Total": 0,
+            "Bank Total": 0,
+            "Discrepancy": "No Discrepancy Found"
+        }
+    ],
+    "columnRows": [
+        {
+            "value": "Duplicate",
+            "keyName": "Discrepancy",
+            "onClick": ObjectId("6527ab7a1535459de57b6cdf")
+        }
+    ],
+    "reportId": ObjectId("64fb030c5bac6f2f5d0aac6a"),
+    "reconId": ObjectId("64fb040a5bac6f2f5d0aacf9")
+}
+
+
+
+{
+    "label": "duplicate ",
+    "columnLabels": [],
+    "query": {
+        "select": "SELECT CAST(COUNT(source.'_id') AS INTEGER) AS 'Count',SUM(source.'grossAmount') AS 'OLO Total',SUM(source.'totalAmount') AS 'PaytmMicro Total', `Duplicate` AS 'Discrepancy'",
+        "where": "WHERE hash_one IN (SELECT d.\"hash_one\" FROM olo_vs_paytmmicro_transformed as \"d\" GROUP BY hash_one HAVING COUNT(*) > 1 )",
+        "group": "",
+        "from": ""
+    },
+    "defaultResponse": [
+        {
+            "Count": 0,
+            "OLO Total": 0,
+            "PaytmMicro Total": 0,
+            "Discrepancy": "No Discrepancy Found"
+        }
+    ],
+    "columnRows": [],
+    "reportId": ObjectId("64d2069c6a80b5a6112c32ca"),
+    "reconId": ObjectId("64d2276ffeadfd2c3cc5af61")
+}
+
+{
+    "label": "Duplicate get",
+    "defaultResponse": [],
+    "query": {
+        "select": "SELECT * ",
+        "where": "WHERE hash_one IN (SELECT d.\"hash_one\" FROM olo_vs_paytmmicro_transformed as \"d\" GROUP BY hash_one HAVING COUNT(*) > 1 )",
+        "group": "",
+        "from": ""
+    },
+    "reportId": ObjectId("64d2069c6a80b5a6112c32ca"),
+    "reconId": ObjectId("64d2276ffeadfd2c3cc5af61")
+}
+
+{
+    "label": "Manually reconciled",
+    "columnLabels": [
+        {
+            "label": "Status",
+            "align": "left",
+            "format": "string"
+        },
+        {
+            "label": "Count",
+            "align": "right",
+            "format": "0"
+        },
+        {
+            "label": "OLO Total",
+            "align": "right",
+            "format": "0.00"
+        },
+        {
+            "label": "Paytm Total",
+            "align": "right",
+            "format": "0.00"
+        }
+    ],
+    "query": {
+        "select": "SELECT CAST(COUNT(source.'_id') AS INTEGER) AS 'Count',SUM(source.'grossAmount') AS 'OLO Total',SUM(source.'paytmGrossAmount') AS 'Paytm Total',`Manual Reconcile` AS 'Status' ",
+        "where": "source.\"reason\" IS NOT NULL",
+        "group": "GROUP BY source.'reconciled'"
+    },
+    "defaultResponse": [
+        {
+            "Count": 0,
+            "OLO Total": 0,
+            "Paytm Total": 0,
+            "Status": "No Reconciled Found"
+        }
+    ],
+    "columnRows": [
+        {
+            "value": "Manual Reconcile",
+            "keyName": "Status",
+            "onClick": ObjectId("652fcadb1535459de5bb6835")
+        },
+    ],
+    "pipeline": [],
+    "reportId": ObjectId("648d6b34f54c1dcdc56a0bce"),
+    "reconId": ObjectId("648d8c8484ba6b122e5f72c6")
+}
+
+
+{
+    "label": "Manual get",
+    "defaultResponse": [],
+    "query": {
+        "select": "SELECT * ",
+        "where": "source.\"reason\" IS NOT NULL",
+        "group": "",
+        "from": ""
+    },
+    "reportId": ObjectId("648d6b34f54c1dcdc56a0bce"),
+    "reconId": ObjectId("648d8c8484ba6b122e5f72c6")
+}
+
+{
+    "label": "bank  total query ",
+    "columnLabels": [
+        {
+            "label": "Bank Total",
+            "align": "right",
+            "format": "0.00"
+        },
+        {
+            "label": "Bank Count",
+            "align": "right",
+            "format": "0"
+        }
+    ],
+    "defaultResponse": [
+        {
+            "Bank Count": 0,
+            "Bank Total": 0
+        }
+    ],
+    "columnRows": [],
+    "query": {
+        "select": "SELECT CAST(COUNT(source.'_id') AS INTEGER) AS 'Bank Count',SUM(source.'credits') AS 'Bank Total'",
+        "where": "source.\"source\"=`PAYTM`",
+        "group": "",
+        "from": "FROM \"bank_txt_report_transformed\" as \"source\""
+    },
+    "pipeline": [],
+    "reportId": ObjectId("64fb030c5bac6f2f5d0aac6a"),
+    "reconId": ObjectId("64fb040a5bac6f2f5d0aacf9")
+}
+
+{
+    "label": "paytm Wallet Grouped By UTR",
+    "columnLabels": [
+        {
+            "label": "PaytmWallet Count",
+            "align": "right",
+            "format": "0"
+        },
+        {
+            "label": "PaytmWallet Total",
+            "align": "right",
+            "format": "0.00"
+        }
+    ],
+    "defaultResponse": [
+        {
+            "PaytmWallet Count": 0,
+            "PaytmWallet Total": 0
+        }
+    ],
+    "columnRows": [],
+    "query": {
+        "select": "SELECT COUNT(source.'_id') AS 'PaytmWallet Count',SUM(source.'netGrossamount') AS 'PaytmWallet Total'",
+        "where": "",
+        "group": "",
+        "from": "FROM \"paytm_wallet_group_by_utrno_transformed\" as \"source\""
+    },
+    "pipeline": [],
+    "reportId": ObjectId("64fb030c5bac6f2f5d0aac6a"),
+    "reconId": ObjectId("64fb040a5bac6f2f5d0aacf9")
+}
+
+
+"columnRows": [
+    {
+        "value": "Reconciled",
+        "keyName": "Status",
+        "onClick":ObjectId("652fcadb1535459de5bb6835")
+    },
+    {
+        "value": "UnReconciled",
+        "keyName": "Status",
+        "onClick":ObjectId("652fcadb1535459de5bb6840")
+    }
+]
+//bank ObjectId("652fc2db1535459de5baca30")
+"columnRows": [
+    {
+        "value": "Reconciled",
+        "keyName": "Status",
+        "onClick":ObjectId("652fc2db1535459de5baca30")
+    },
+    {
+        "value": "UnReconciled",
+        "keyName": "Status",
+        "onClick":ObjectId("652fc2db1535459de5baca3b")
+    },
+    {
+        "value": "Not Found",
+        "keyName": "Status",
+        "onClick":ObjectId("654335ab5ab7c3a871aeb99f")
+    }
+]
+
+
+
+
+
+{
+    "label": "PaytmWallet record missing",
+    "query": {
+        "select": "SELECT * ",
+        "where": "source.'discrepancy' ~`PaytmWallet record missing`",
+        "group": "",
+        "from": ""
+    },
+    "reportId": ObjectId("64d206716a80b5a6112c2fd1"),
+    "reconId": ObjectId("64d2273efeadfd2c3cc5af4b")
+}
+
+ObjectId("653f51a06547f7abc2b8b65f")
+
+
+
+
+
+
+
+
+
+
+
+ObjectId("653f58706547f7abc2b96330")
+{
+    "label": "Paytm Wallet greater than bank",
+    "query": {
+        "select": "SELECT * ",
+        "where": "source.'discrepancy' ~`Paytm Wallet greater than bank`",
+        "group": "",
+        "from": ""
+    },
+    "reportId": ObjectId("64fb030c5bac6f2f5d0aac6a"),
+    "reconId": ObjectId("64fb040a5bac6f2f5d0aacf9")
+}
+ObjectId("653f58706547f7abc2b9633b")
+{
+    "label": "PaytmWallet record missing",
+    "query": {
+        "select": "SELECT * ",
+        "where": "source.'discrepancy' ~`PaytmWallet record missing`",
+        "group": "",
+        "from": ""
+    },
+    "reportId": ObjectId("64fb030c5bac6f2f5d0aac6a"),
+    "reconId": ObjectId("64fb040a5bac6f2f5d0aacf9")
+}

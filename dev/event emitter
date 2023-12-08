@@ -1,0 +1,95 @@
+const ExcelJS = require('exceljs');
+const AWS = require('aws-sdk');
+const s3 = new AWS.S3();
+const EventEmitter = require('events');
+
+class Queue extends EventEmitter {
+    constructor(basePath, baseIndex, concurrent = 5) {
+        super();
+        this.q = [];
+        this.paused = false;
+        this.inFlightCntr = 0;
+        this.fileCntr = baseIndex;
+        this.maxConcurrent = concurrent;
+    }
+
+    // add item to the queue and write (if not already writing)
+    add(data) {
+        this.q.push(data);
+        this.write();
+    }
+
+    // write next block from the queue (if not already writing)
+    write() {
+        while (!this.paused && this.q.length && this.inFlightCntr < this.maxConcurrent) {
+            this.inFlightCntr++;
+            let buf = this.q.shift();
+            try {
+                this.uploadToS3(buf);
+            } catch(e) {
+                this.err(e);
+            }
+        }
+    }
+
+    uploadToS3(buf) {
+        const params = {
+            Bucket: 'your-bucket-name', // replace with your S3 bucket name
+            Key: `file-${this.fileCntr++}`,
+            Body: buf,
+            ContentType: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+        };
+
+        s3.upload(params, function(err, data) {
+            if (err) {
+                console.log("Error", err);
+            } if (data) {
+                console.log("Upload Success", data.Location);
+            }
+            this.inFlightCntr--;
+            this.write();
+        });
+    }
+
+    err(e) {
+        this.pause();
+        this.emit('error', e)
+    }
+
+    pause() {
+        this.paused = true;
+    }
+
+    resume() {
+        this.paused = false;
+        this.write();
+    }
+}
+
+let q = new Queue("file-", 0, 5);
+
+// This fires 30 times/sec and runs for 30-45 min
+dataSender.on('gotData', function(data){
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('sheet1');
+
+    worksheet.columns = columns
+
+    const chunkSize = 10000;
+    for (let i = 0; i < data.length; i += chunkSize) {
+        const chunk = data.slice(i, i + chunkSize);
+        logger.info(`======>Processing [${i}] Data For Download <======`)
+        chunk.forEach(item => {
+            worksheet.addRow(item);
+        });
+    }
+
+    workbook.xlsx.writeBuffer().then(buffer => {
+        q.add(buffer);
+    });
+});
+
+q.on('error', function(e) {
+    // go some sort of write error here
+    console.log(e);
+});

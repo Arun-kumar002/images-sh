@@ -1,0 +1,140 @@
+/* 1 */
+{
+    "_id" : ObjectId("654a2ca976a13096fbb553b4"),
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "filter" : "",
+    "columns" : [],
+    "order" : 1,
+    "keyColumns" : [],
+    "keyColumn" : "__EMPTY_5",
+    "direction" : "next",
+    "group" : [],
+    "createdAt" : ISODate("2023-11-07T05:55:13.142-06:30"),
+    "updatedAt" : ISODate("2023-11-07T05:55:13.142-06:30"),
+    "__v" : 0
+}
+
+/* 2 */
+{
+    "_id" : ObjectId("654a31b47d2a14004e3fdbbb"),
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "filter" : "IGNORE_ROW",
+    "columns" : [],
+    "order" : 1,
+    "keyColumns" : [],
+    "keyColumn" : "__EMPTY_3",
+    "value" : "ROOM",
+    "others" : false,
+    "checkIncludes" : true,
+    "group" : [],
+    "createdAt" : ISODate("2023-11-07T06:16:44.641-06:30"),
+    "updatedAt" : ISODate("2023-11-07T06:16:44.641-06:30"),
+    "__v" : 0
+}
+
+/* 3 */
+{
+    "_id" : ObjectId("654a31cb7d2a14004e3fdbc2"),
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "filter" : "IGNORE_ROW",
+    "columns" : [],
+    "order" : 1,
+    "keyColumns" : [],
+    "keyColumn" : "__EMPTY_3",
+    "value" : "Confirmation No",
+    "others" : false,
+    "checkIncludes" : false,
+    "group" : [],
+    "createdAt" : ISODate("2023-11-07T06:17:07.636-06:30"),
+    "updatedAt" : ISODate("2023-11-07T06:17:07.636-06:30"),
+    "__v" : 0
+}
+
+/* 4 */
+{
+    "_id" : ObjectId("654a327511f446a2ad14a7d2"),
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "filter" : "IGNORE_ROW",
+    "columns" : [],
+    "order" : 1,
+    "keyColumns" : [],
+    "keyColumn" : "__EMPTY_3",
+    "value" : "Room",
+    "others" : false,
+    "checkIncludes" : false,
+    "group" : [],
+    "createdAt" : ISODate("2023-11-07T06:19:57.836-06:30"),
+    "updatedAt" : ISODate("2023-11-07T06:19:57.836-06:30"),
+    "__v" : 0
+}
+
+/* 5 */
+{
+    "_id" : ObjectId("654a327611f446a2ad14a7d6"),
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "filter" : "IGNORE_ROW",
+    "columns" : [],
+    "order" : 1,
+    "keyColumns" : [],
+    "value" : "",
+    "others" : false,
+    "checkIncludes" : false,
+    "group" : [],
+    "createdAt" : ISODate("2023-11-07T06:19:58.510-06:30"),
+    "updatedAt" : ISODate("2023-11-07T06:19:58.510-06:30"),
+    "__v" : 0
+}
+
+/* 6 */
+{
+    "_id" : ObjectId("654cb8505ab7c3a8716e279c"),
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "filter" : "MERGE_CLEANSING",
+    "columns" : [],
+    "order" : 1,
+    "keyColumns" : [],
+    "keyColumn" : "DEBITS",
+    "searchTerm" : " ",
+    "replaceWith" : "",
+    "mergeRows" : 2,
+    "mergeStartRow" : 12,
+    "__v" : 0,
+    "createdAt" : ISODate("2023-07-10T07:51:34.606-06:30"),
+    "updatedAt" : ISODate("2023-07-10T07:51:34.606-06:30")
+}
+
+/* 7 */
+{
+    "_id" : ObjectId("654b1619ae4bf45194478051"),
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "filter" : "SEARCH_REPLACE",
+    "columns" : [],
+    "order" : 2,
+    "keyColumns" : [ 
+        "ArchiveDailyTransactionRegister", 
+        "__EMPTY_3"
+    ],
+    "searchTerm" : "\\*",
+    "replaceWith" : "",
+    "replaceType" : "EQUAL",
+    "group" : [],
+    "createdAt" : ISODate("2023-11-07T22:31:13.489-06:30"),
+    "updatedAt" : ISODate("2023-11-07T22:31:13.489-06:30"),
+    "__v" : 0
+}
+
+/* 8 */
+{
+    "_id" : ObjectId("654b1865ae4bf451944780a1"),
+    "reportId" : ObjectId("654a289176a13096fbb51d54"),
+    "filter" : "SPLIT_VALUE",
+    "columns" : [],
+    "order" : 1,
+    "keyColumns" : [],
+    "keyColumn" : "__EMPTY_9",
+    "delimiter" : " ",
+    "group" : [],
+    "createdAt" : ISODate("2023-11-07T22:41:01.255-06:30"),
+    "updatedAt" : ISODate("2023-11-07T22:41:01.255-06:30"),
+    "__v" : 0
+}

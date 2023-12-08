@@ -1,0 +1,217 @@
+import {
+    Button,
+    Form,
+    Space,
+    Steps,
+    Input,
+    AutoComplete,
+    message,
+    Modal,
+} from "antd";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+    getReconcileMasterValues,
+    manualreconData,
+    removeManualReconData,
+} from "../../redux/slices/reconciliationSlice";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
+import {
+    SendmasterData,
+    updatemasterData,
+} from "../../redux/slices/masterSlice";
+import { useAppSelector } from "../../redux/hooks";
+import { manualReconciledService } from "../../redux/service/reconcilationService";
+import { useParams } from "react-router-dom";
+const { TextArea } = Input;
+interface PropAdd {
+    onClose: () => void;
+    selectedRowKeys: any;
+    reconId: any;
+}
+
+const ManualRecon = ({ onClose, selectedRowKeys, reconId }: PropAdd) => {
+    let [masterLookupValues, setMasterLookupValues]: any = useState([]);
+    let [reconciliationData, setReconciliationData]: any = useState(null);
+    let dispatch = useDispatch();
+    const [form] = Form.useForm();
+    const params = useParams();
+    let { ReconcileMasterValues, manualReconData } = useAppSelector(
+        (state) => state.reconciliation
+    );
+    const { allReconciliation } = useAppSelector((state) => state.custom);
+
+    useEffect(() => {
+        if (allReconciliation) {
+            let reconData = allReconciliation?.filter((recon: any) => {
+                return recon?._id === reconId;
+            });
+            setReconciliationData(reconData);
+        }
+    }, [reconId]);
+
+    useEffect(() => {
+        let masterValues: any = [];
+        if (ReconcileMasterValues) {
+            ReconcileMasterValues?.map((value: any) => {
+                value?.value instanceof Array &&
+                    value?.value?.map((item: any) => {
+                        masterValues?.push({
+                            label: `${item}`,
+                            value: `${item}`,
+                        });
+                    });
+            });
+            setMasterLookupValues(masterValues);
+        }
+    }, [ReconcileMasterValues]);
+
+    useEffect(() => {
+        if (reconciliationData) {
+            let manualReconcileMasterFilterPayload: any = [];
+            reconciliationData &&
+                manualReconcileMasterFilterPayload?.push({
+                    key: "key",
+                    value: reconciliationData[0]?.master,
+                });
+
+            dispatch(getReconcileMasterValues(manualReconcileMasterFilterPayload));
+        }
+    }, [reconciliationData]);
+
+    const onFinish = async (values: any) => {
+
+        if (manualReconData && Array.isArray(manualReconData) && manualReconData.length > 0) {
+            const payload = {
+                remarks: values.reason,
+                reason: values?.reason,
+                summary: values?.summary,
+                data: manualReconData,
+                reportId: params.id
+            }
+
+            await manualReconciledService(payload);
+            dispatch(removeManualReconData([]))
+            form.resetFields();
+            onClose();
+        } else {
+            let isMasterValueExist = masterLookupValues?.some((value: any) => {
+                return value?.label?.toLowerCase() === values?.reason?.toLowerCase();
+            });
+
+            let manualReconcilePayload = {
+                reconId: reconId,
+                reason: values?.reason,
+                summary: values?.summary,
+                fields: selectedRowKeys,
+            };
+            if (isMasterValueExist) {
+                dispatch(manualreconData(manualReconcilePayload));
+                form.resetFields();
+                onClose();
+            } else {
+                let masterPayload = {
+                    dataType: ReconcileMasterValues[0]?.dataType,
+                    key: ReconcileMasterValues[0]?.key,
+                    value: [...ReconcileMasterValues[0]?.value, values?.reason],
+                    format: "",
+                    withEffectFromDate: ReconcileMasterValues[0]?.withEffectFromDate,
+                };
+
+                let payload = {
+                    updateMasterId: ReconcileMasterValues[0]?._id,
+                    updateMasterData: masterPayload,
+                };
+                manualReconcileconfirm(payload, manualReconcilePayload);
+                form.resetFields();
+                onClose();
+            }
+        }
+
+    };
+
+    const manualReconcileconfirm = (
+        payload: any,
+        manualReconcilePayload: any
+    ) => {
+        Modal.confirm({
+            title: "Confirm",
+            icon: <ExclamationCircleOutlined />,
+            content: "Are you sure you want to Add this Reason",
+            onOk() {
+                dispatch(updatemasterData(payload));
+                dispatch(manualreconData(manualReconcilePayload));
+            },
+            cancelText: "cancel",
+        });
+    };
+
+    const formItemLayout = {
+        labelCol: {
+            xs: { span: 28 },
+            sm: { span: 11 },
+        },
+        wrapperCol: {
+            xs: { span: 28 },
+            sm: { span: 18 },
+        },
+    };
+
+    return (
+        <div>
+            <div style={{ marginTop: "5%" }}>
+                <p style={{ fontSize: "15px" }}>
+                    If you want to Manual Reconcile these records, you below mention
+                    reason.
+                </p>
+            </div>
+            <Form
+                onFinish={onFinish}
+                labelAlign="left"
+                layout="vertical"
+                form={form}
+                {...formItemLayout}
+                style={{ marginTop: "5%" }}
+            >
+                <Form.Item
+                    label="Reason "
+                    name="reason"
+                    rules={[
+                        {
+                            required: true,
+                            message: "Please input Reason",
+                        },
+                    ]}
+                    style={{ width: "100%" }}
+                >
+                    <AutoComplete
+                        options={Array.isArray(masterLookupValues) ? masterLookupValues : []}
+                        filterOption={true}
+                        onSelect={(value: any) => {
+                            console.log("onSelect", value);
+                        }}
+                        onSearch={(value: any) => {
+                            console.log("onSearch", value);
+                        }}
+                    />
+                </Form.Item>
+                <Form.Item label="Comment" name="summary" style={{ width: "100%" }}>
+                    <TextArea rows={4} style={{ width: "100%" }} />
+                </Form.Item>
+                <Form.Item style={{ position: "absolute", bottom: -15, right: 35 }}>
+                    <Button
+                        type="primary"
+                        htmlType="submit"
+                        className="primarybtn"
+                        size="large"
+                        style={{ fontSize: "16px" }}
+                    >
+                        Save
+                    </Button>
+                </Form.Item>
+            </Form>
+        </div>
+    );
+};
+
+export default ManualRecon;
