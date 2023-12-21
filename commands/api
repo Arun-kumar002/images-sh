@@ -3,3 +3,16 @@ sudo -s
 tail -f /var/log/nginx/access.log
 tail -f /var/log/nginx/error.log
 
+
+
+error: 404 ngnix rejecting the request
+
+tail -f /var/log/nginx/access.log
+
+it receiving the request but ngnix  not send data to api .
+        
+        
+        1. /etc/nginx/sites-available/
+        2. vi default
+        3. in location i make /r/api as a path and saved
+        4. service nginx restart

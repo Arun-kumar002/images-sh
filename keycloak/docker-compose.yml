@@ -1,0 +1,12 @@
+version: '3.9'
+services:
+ keycloak:
+   image: quay.io/keycloak/keycloak:23.0.1
+   environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin123
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin123
+   ports:
+     - 8080:8080
+   command: ["start-dev"]
