@@ -1,3 +1,5 @@
+vi .bashrc to set bash alias in jump server
+
 To Detach screen ctrl+ alt+a release all and click d
 screen -R Zer0
 screen ls
