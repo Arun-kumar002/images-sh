@@ -1,0 +1,23 @@
+FROM node:18.15.0-alpine AS build
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+# Stage  2: Setup the runtime environment
+
+FROM gcr.io/distroless/nodejs18-debian11
+
+WORKDIR /test
+
+COPY --from=build /app /test
+
+USER nonroot
+
+CMD ["index.js"]
+
+EXPOSE  5001

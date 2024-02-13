@@ -1,0 +1,76 @@
+docker run --mount type=bind,source=/path/on/host,target=/path/in/container your-image-name
+docker run -v /path/on/host:/path/in/container your-image-name
+
+
+sudo docker exec -it 382ba38a1e7c sh
+
+sudo docker-compose up --build --force-recreate
+
+sudo docker exec -it dfc19c13dad7 ls /
+
+su - arunkumar
+
+
+docker volume ls
+
+docker volume create test
+
+docker volume inspect test
+
+docker volume rm test
+
+copy local file to container:
+    docker build -t app2:latest .
+    docker run -p 8080:5000 app2:latest
+    sudo docker cp /home/arunkumar/commonfs/demo.txt 65ab0c6ec2fe:/thread-clone-backend/commonfs/
+
+
+sudo docker run -d --mount type=bind,source=/home/arunkumar/commonfs,target=/thread-clone-backend/commonfs app2:latest
+
+
+
+
+
+
+sudo docker cp /home/arunkumar/commonfs e93a5ca7699b:/commonfs
+ sudo docker cp /home/arunkumar/commonfs/test123456.txt e93a5ca7699b:/commonfs
+
+sudo docker exec -it 532ea54ae9c7 /bin/bash 
+
+
+distroless image
+    - light weight docker image
+    - highest security  
+    - scratch minimalistic distroless image 
+multistage build
+
+docker network:
+    communication between the containers
+     ex:container 1 ---> container 2
+    1.default network for the container is bridge network (veth virtual ethernet (docker zero))
+        if we delete the bridge network the application host is not reachable
+    2. host network:
+        the container directly use the network of our host.
+        but if anyone have access to the host they can access the container also (security issue).
+    3. overlay network:
+        complicated. popular
+    etc.. 
+
+commands:
+    container health check:
+        docker inspect --format='{{json .State.Health}}' ae9702a5a909 
+        zero means healthy 1 means unhealthy
+    containers:
+        docker ps   
+            to see container
+        docker ps -a
+            to see stopped container
+        docker rm containerId
+            to remove container
+        docker start containerId
+            to start container
+        docker stop containerId
+            to stop container
+        docker restart containerId
+            to restart container
+    
