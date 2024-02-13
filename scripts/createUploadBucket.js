@@ -1,9 +1,9 @@
 const AWS = require('aws-sdk');
 
 const s3 = new AWS.S3({
-    accessKeyId: process.argv[3] || "",
-    secretAccessKey: process.argv[4] || "",
-    region: process.argv[5] || ""
+    accessKeyId: process.argv[3] || "AKIASPKX72U5ATJNUR5V",
+    secretAccessKey: process.argv[4] || "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",
+    region: process.argv[5] || "ap-south-1"
 });
 
 const bucketName = process.argv[2];
