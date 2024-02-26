@@ -1,0 +1,406 @@
+{
+    "TEXT": {
+        "label": "Text Field",
+        "applyMaskOn": "change",
+        "tableView": true,
+        "key": "textField",
+        "type": "textfield",
+        "input": true
+    },
+    "MULTILINETEXT": {
+        "label": "Text Area",
+        "applyMaskOn": "change",
+        "autoExpand": false,
+        "tableView": true,
+        "key": "textArea",
+        "type": "textarea",
+        "input": true
+    },
+    "NUMBER": {
+        "label": "Number",
+        "applyMaskOn": "change",
+        "mask": false,
+        "tableView": false,
+        "delimiter": false,
+        "requireDecimal": false,
+        "inputFormat": "plain",
+        "truncateMultipleSpaces": false,
+        "key": "number",
+        "type": "number",
+        "input": true
+    },
+    "CHECKBOX": {
+        "label": "Checkbox",
+        "tableView": false,
+        "key": "checkbox",
+        "type": "checkbox",
+        "input": true
+    },
+    "CHOICES": {
+        "label": "Select",
+        "widget": "choicesjs",
+        "tableView": true,
+        "data": {
+            "values": []
+        },
+        "key": "select",
+        "type": "select",
+        "input": true
+    },
+    "MultiSelectDropDown": {
+        "label": "Select",
+        "widget": "choicesjs",
+        "tableView": true,
+        "data": {},
+        "key": "select",
+        "type": "select",
+        "input": true,
+        "multiple": true
+    },
+    "RADIO": {
+        "label": "Radio",
+        "optionsLabelPosition": "right",
+        "inline": false,
+        "tableView": false,
+        "values": [
+            {
+                "label": "hello",
+                "value": "hello",
+                "shortcut": "A"
+            }
+        ],
+        "key": "radio",
+        "type": "radio",
+        "input": true
+    },
+    "EMAIL": {
+        "label": "Email",
+        "applyMaskOn": "change",
+        "tableView": true,
+        "key": "email",
+        "type": "email",
+        "input": true
+    },
+    "URL": {
+        "label": "Url",
+        "applyMaskOn": "change",
+        "tableView": true,
+        "key": "url",
+        "type": "url",
+        "input": true
+    },
+    "DATETIME": {
+        "label": "datetime",
+        "widget": {
+            "type": "calendar",
+            "altInput": true,
+            "allowInput": true,
+            "clickOpens": true,
+            "enableDate": true,
+            "enableTime": true,
+            "mode": "single",
+            "noCalendar": false,
+            "format": "yyyy-MM-dd hh:mm a",
+            "dateFormat": "yyyy-MM-ddTHH:mm:ssZ",
+            "useLocaleSettings": false,
+            "hourIncrement": 1,
+            "minuteIncrement": 5,
+            "time_24hr": false,
+            "saveAs": "text",
+            "displayInTimezone": "viewer",
+            "locale": "en"
+        },
+        "applyMaskOn": "change",
+        "tableView": true,
+        "key": "datetime",
+        "type": "textfield",
+        "input": true
+    },
+    "DATE": {
+        "label": "datetime",
+        "widget": {
+            "type": "calendar",
+            "altInput": true,
+            "allowInput": true,
+            "clickOpens": true,
+            "enableDate": true,
+            "enableTime": true,
+            "mode": "single",
+            "noCalendar": false,
+            "format": "yyyy-MM-dd",
+            "dateFormat": "yyyy-MM-dd",
+            "useLocaleSettings": false,
+            "hourIncrement": 1,
+            "minuteIncrement": 5,
+            "time_24hr": false,
+            "saveAs": "text",
+            "displayInTimezone": "viewer",
+            "locale": "en"
+        },
+        "applyMaskOn": "change",
+        "tableView": true,
+        "key": "datetime",
+        "type": "textfield",
+        "input": true
+    },
+    "TIME": {
+        "label": "Time",
+        "tableView": true,
+        "key": "time",
+        "type": "time",
+        "input": true,
+        "inputMask": "99:99"
+    },
+    "SIGNATURE": {
+        "label": "Signature",
+        "tableView": false,
+        "key": "signature",
+        "type": "signature",
+        "input": true
+    },
+    "SAVE": {
+        "label": "Save",
+        "showValidations": false,
+        "theme": "success",
+        "block": true,
+        "tableView": false,
+        "key": "save",
+        "type": "button",
+        "input": true,
+        "saveOnEnter": false
+    },
+    "OUTLETS": {
+        "label": "Select",
+        "widget": "choicesjs",
+        "tableView": true,
+        "data": {
+            "values": []
+        },
+        "key": "select",
+        "type": "select",
+        "input": true
+    },
+    "ROOM_TYPE": {
+        "label": "Select",
+        "widget": "choicesjs",
+        "tableView": true,
+        "data": {
+            "values": []
+        },
+        "key": "select",
+        "type": "select",
+        "input": true
+    },
+    "LOYALTY_OUTLETS": {
+        "label": "Select",
+        "widget": "choicesjs",
+        "tableView": true,
+        "data": {
+            "values": []
+        },
+        "key": "select",
+        "type": "select",
+        "input": true
+    },
+    "LABEL": {
+        "label": "Text Field",
+        "applyMaskOn": "change",
+        "hideLabel": true,
+        "disabled": true,
+        "tableView": true,
+        "key": "textField",
+        "type": "textfield",
+        "input": true,
+        "defaultValue": "test"
+    },
+    "LOYALTY_OUTLET_CONFIG": {
+        "type": "select",
+        "event": "onload",
+        "inputKey": "outletProperty",
+        "api": {
+            "apiDataEndpoint": "server_end_point/api/ui/v2/loyaltyoutlet/api_key",
+            "payload": "{\"merchantId\": \"[merchantId]\"}",
+            "name": "loyaltyOutletConfig"
+        }
+    },
+    "OUTLETS_CONFIG": {
+        "type": "select",
+        "event": "onload",
+        "inputKey": "outlets",
+        "api": {
+            "apiDataEndpoint": "server_end_point/api/outlet/v2/api_key",
+            "payload": "{\"merchantId\": \"[merchantId]\"}",
+            "name": "outletConfig"
+        }
+    },
+    "ROOM_TYPE_CONFIG": {
+        "type": "select",
+        "event": "onload",
+        "inputKey": "roomType",
+        "api": {
+            "apiDataEndpoint": "server_end_point/api/ui/v2/roomtype/api_key",
+            "payload": "{\"merchantId\": \"[merchantId]\"}",
+            "name": "roomTypeConfig"
+        }
+    },
+    "TABLE": {
+        "label": "Table1",
+        "openWhenEmpty": true,
+        "tableView": true,
+        "inlineEdit": false,
+        "protected": true,
+        "rowDrafts": false,
+        "key": "Table1",
+        "type": "editgrid",
+        "displayAsTable": true,
+        "input": true,
+        "components": [
+            {
+                "label": "Name of DMC",
+                "applyMaskOn": "change",
+                "tableView": true,
+                "key": "nameofDMC",
+                "type": "textfield",
+                "input": true,
+                "data": {
+                    "values": []
+                },
+                "hideLabel": true
+            },
+            {
+                "label": "Name of FTO",
+                "applyMaskOn": "change",
+                "tableView": true,
+                "key": "nameofFTO",
+                "type": "textfield",
+                "input": true,
+                "data": {
+                    "values": []
+                },
+                "hideLabel": true
+            },
+            {
+                "label": "Property Name",
+                "widget": "choicesjs",
+                "tableView": true,
+                "data": {
+                    "values": []
+                },
+                "key": "outlet",
+                "type": "select",
+                "input": true,
+                "hideLabel": true
+            },
+            {
+                "label": "No. of rooms",
+                "applyMaskOn": "change",
+                "mask": false,
+                "tableView": true,
+                "delimiter": false,
+                "requireDecimal": false,
+                "inputFormat": "plain",
+                "truncateMultipleSpaces": false,
+                "key": "noOfRooms",
+                "type": "number",
+                "input": true,
+                "data": {
+                    "values": []
+                },
+                "hideLabel": true
+            },
+            {
+                "label": "Check In Date",
+                "widget": {
+                    "type": "calendar",
+                    "altInput": true,
+                    "allowInput": true,
+                    "clickOpens": true,
+                    "enableDate": true,
+                    "enableTime": true,
+                    "mode": "single",
+                    "noCalendar": false,
+                    "format": "yyyy-MM-dd hh:mm a",
+                    "dateFormat": "yyyy-MM-ddTHH:mm:ssZ",
+                    "useLocaleSettings": false,
+                    "hourIncrement": 1,
+                    "minuteIncrement": 5,
+                    "time_24hr": false,
+                    "saveAs": "text",
+                    "displayInTimezone": "viewer",
+                    "locale": "en"
+                },
+                "applyMaskOn": "change",
+                "tableView": true,
+                "key": "checkInDate",
+                "type": "textfield",
+                "input": true,
+                "data": {
+                    "values": []
+                },
+                "hideLabel": true
+            },
+            {
+                "label": "Check Out Date",
+                "widget": {
+                    "type": "calendar",
+                    "altInput": true,
+                    "allowInput": true,
+                    "clickOpens": true,
+                    "enableDate": true,
+                    "enableTime": true,
+                    "mode": "single",
+                    "noCalendar": false,
+                    "format": "yyyy-MM-dd hh:mm a",
+                    "dateFormat": "yyyy-MM-ddTHH:mm:ssZ",
+                    "useLocaleSettings": false,
+                    "hourIncrement": 1,
+                    "minuteIncrement": 5,
+                    "time_24hr": false,
+                    "saveAs": "text",
+                    "displayInTimezone": "viewer",
+                    "locale": "en"
+                },
+                "applyMaskOn": "change",
+                "tableView": true,
+                "key": "checkOutDate",
+                "type": "textfield",
+                "input": true,
+                "data": {
+                    "values": []
+                },
+                "hideLabel": true
+            },
+            {
+                "label": "No. of Nights",
+                "applyMaskOn": "change",
+                "mask": false,
+                "tableView": true,
+                "delimiter": false,
+                "requireDecimal": false,
+                "inputFormat": "plain",
+                "truncateMultipleSpaces": false,
+                "key": "noofnights",
+                "type": "number",
+                "input": true,
+                "data": {
+                    "values": []
+                },
+                "hideLabel": true
+            },
+            {
+                "label": "Remarks",
+                "widget": "",
+                "applyMaskOn": "change",
+                "autoExpand": false,
+                "tableView": true,
+                "key": "remarks",
+                "type": "textarea",
+                "input": true,
+                "data": {
+                    "values": []
+                },
+                "hideLabel": true
+            }
+        ]
+    }
+}
